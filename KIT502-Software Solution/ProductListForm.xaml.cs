@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using KIT502_Software_Solution.Model;
+using KIT502_Software_Solution.Utility;
+
 namespace KIT502_Software_Solution
 {
     /// <summary>
@@ -22,12 +25,36 @@ namespace KIT502_Software_Solution
         public ProductListForm()
         {
             InitializeComponent();
+
+            this.PopulateData();
+        }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            this.lbProductList.ItemsSource = null;
+
+            var categoryId = ValueConvert.ToInt(this.cmbCategory.SelectedValue.ToString());
+            var query = this.txtSearch.Text.Trim();
+
+            var productList = Product.Find(categoryId, query);
+            this.lbProductList.ItemsSource = productList;
+            this.lbProductList.SelectedValuePath = "id";
+            this.lbProductList.DisplayMemberPath = "name";
         }
 
         private void btnEditProduct_Click(object sender, RoutedEventArgs e)
         {
             var pdf = new ProductEditForm();
             pdf.ShowDialog();
+        }
+
+        private void PopulateData()
+        {
+            var categoryList = Category.LoadAll(true);
+            this.cmbCategory.ItemsSource = categoryList;
+            this.cmbCategory.SelectedValuePath = "id";
+            this.cmbCategory.DisplayMemberPath = "name";
+            this.cmbCategory.SelectedValue = 0;
         }
     }
 }
