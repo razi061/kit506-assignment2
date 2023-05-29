@@ -27,7 +27,7 @@ namespace KIT502_Software_Solution.Model
             return this.name;
         }
 
-        public static IList<Payment_Type> Convert(MySqlDataReader? dr)
+        private static IList<Payment_Type> Convert(MySqlDataReader? dr)
         {
             var paymentTypeList = new List<Payment_Type>();
 

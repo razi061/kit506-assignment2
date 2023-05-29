@@ -7,7 +7,7 @@ using MySql.Data.MySqlClient;
 
 namespace KIT502_Software_Solution.Model
 {
-    internal class reorder
+    internal class Reorder
     {
         public int id { get; set; }
         public int product_id { get; set; }
@@ -17,13 +17,35 @@ namespace KIT502_Software_Solution.Model
 
         public const string TABLE_NAME = "reorder";
 
-        public reorder()
+        public Reorder()
         {
             this.id = 0;
             this.product_id = 0;
             this.quantity = 0;
             this.comments = string.Empty;
             this.reorder_datetime = new DateTime();
+        }
+
+        private static IList<Reorder> Convert(MySqlDataReader? dr)
+        {
+            var reorderList = new List<Reorder>();
+
+            if (dr != null && dr.HasRows)
+            {
+                while (dr.Read())
+                {
+                    reorderList.Add(new Reorder()
+                    {
+                        id = dr.GetInt32("id"),
+                        product_id = dr.GetInt32("product_id"),
+                        quantity = dr.GetInt32("quantity"),
+                        comments = dr.GetString("comments"),
+                        reorder_datetime = dr.GetDateTime("reorder_datetime")
+                    });
+                }
+            }
+
+            return reorderList;
         }
     }
 }
