@@ -67,25 +67,26 @@ namespace KIT502_Software_Solution.Model
             return msg;
         }
 
-        private static IList<Category> Convert(MySqlDataReader? dr)
+        private static IList<Reorder> Convert(MySqlDataReader? dr)
         {
-            var categoryList = new List<Category>();
+            var reorderList = new List<Reorder>();
 
             if (dr != null && dr.HasRows)
             {
                 while (dr.Read())
                 {
-                    categoryList.Add(new Category
+                    reorderList.Add(new Reorder
                     {
                         id = dr.GetInt32("id"),
-                        name = dr.GetString("name"),
-                        low_discount_level = dr.GetInt32("low_discount_level"),
-                        high_discount_level = dr.GetInt32("high_discount_level")
+                        product_id = dr.GetInt32("product_id"),
+                        quantity = dr.GetInt32("quantity"),
+                        comments = dr.GetString("comments"),
+                        reorder_datetime = dr.GetDateTime("reorder_datetime")
                     });
                 }
             }
 
-            return categoryList;
+            return reorderList;
         }
     }
 }

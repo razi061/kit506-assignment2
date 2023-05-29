@@ -50,13 +50,13 @@ namespace KIT502_Software_Solution.Model
                     {
                         id = dr.GetInt32("id"),
                         product_id = dr.GetInt32("product_id"),
-                        sales_price = dr.GetInt32("sales_price"),
+                        sales_price = dr.GetDouble("sales_price"),
                         quantity = dr.GetInt32("quantity"),
                         voucher_id = dr.GetInt32("voucher_id"),
                         buyer_id = dr.GetInt32("buyer_id"),
                         payment_type_id = dr.GetInt32("payment_type_id"),
                         payment_details = dr.GetString("payment_details"),
-                        total = dr.GetInt32("total"),
+                        total = dr.GetDouble("total"),
                         purchase_datetime = dr.GetDateTime("purchase_datetime"),
                         home_delivery = dr.GetBoolean("home_delivery")
                     });

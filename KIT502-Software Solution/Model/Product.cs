@@ -28,7 +28,7 @@ namespace KIT502_Software_Solution.Model
         public double minimum_price { get; set; }
         public double base_price { get; set; }
         public bool home_delivery { get; set; }
-        public int user_rating { get; set; }
+        public double user_rating { get; set; }
         public string photo { get; set; }
 
         public const string TABLE_NAME = "product";
@@ -150,18 +150,18 @@ namespace KIT502_Software_Solution.Model
                         product_type = dr.GetString("product_type"),
                         brand = dr.GetString("brand"),
                         model = dr.GetString("model"),
-                        energy_rating = dr.GetInt32("energy_rating"),
-                        width = dr.GetInt32("width"),
-                        height = dr.GetInt32("height"),
-                        depth = dr.GetInt32("depth"),
-                        weight = dr.GetInt32("weight"),
+                        energy_rating = dr.GetDouble("energy_rating"),
+                        width = dr.GetDouble("width"),
+                        height = dr.GetDouble("height"),
+                        depth = dr.GetDouble("depth"),
+                        weight = dr.GetDouble("weight"),
                         warranty = dr.GetInt32("warranty"),
                         stock = dr.GetInt32("stock"),
-                        listed_price = dr.GetInt32("listed_price"),
-                        minimum_price = dr.GetInt32("minimum_price"),
-                        base_price = dr.GetInt32("base_price"),
+                        listed_price = dr.GetDouble("listed_price"),
+                        minimum_price = dr.GetDouble("minimum_price"),
+                        base_price = dr.GetDouble("base_price"),
                         home_delivery = dr.GetBoolean("home_delivery"),
-                        user_rating = dr.GetInt32("user_rating"),
+                        user_rating = dr.GetDouble("user_rating"),
                         photo = dr.GetString("photo")
                     });
                 }

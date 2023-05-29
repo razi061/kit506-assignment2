@@ -41,7 +41,7 @@ namespace KIT502_Software_Solution.Model
                         id = dr.GetInt32("id"),
                         product_id = dr.GetInt32("product_id"),
                         colour = dr.GetString("colour"),
-                        max_capacity = dr.GetInt32("max_capacity"),
+                        max_capacity = dr.GetDouble("max_capacity"),
                         vacuum_bag = dr.GetString("vacuum_bag"),
                         standard_run_time = dr.GetInt32("standard_run_time")
                     });

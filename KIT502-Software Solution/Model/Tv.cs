@@ -50,7 +50,7 @@ namespace KIT502_Software_Solution.Model
                         product_id = dr.GetInt32("product_id"),
                         tv_range = dr.GetString("tv_range"),
                         screen_type = dr.GetString("screen_type"),
-                        screen_size = dr.GetInt32("screen_size"),
+                        screen_size = dr.GetDouble("screen_size"),
                         screen_definition = dr.GetString("screen_definition"),
                         screen_resolution = dr.GetString("screen_resolution"),
                         no_hdmi_ports = dr.GetInt32("no_hdmi_ports"),

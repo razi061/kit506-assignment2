@@ -35,7 +35,7 @@ namespace KIT502_Software_Solution.Model
                     voucherList.Add(new Voucher
                     {
                         id = dr.GetInt32("id"),
-                        discount = dr.GetInt32("discount"),
+                        discount = dr.GetDouble("discount"),
                         expiry_date = dr.GetDateTime("expiry_date"),
                         buyer_id = dr.GetInt32("buyer_id")
                     });

@@ -49,7 +49,7 @@ namespace KIT502_Software_Solution.Model
                         product_id = dr.GetInt32("product_id"),
                         colour = dr.GetString("colour"),
                         power_consumption = dr.GetInt32("power_consumption"),
-                        wels_water_efficiency = dr.GetInt32("wels_water_efficiency"),
+                        wels_water_efficiency = dr.GetDouble("wels_water_efficiency"),
                         wels_water_consumption = dr.GetInt32("wels_water_consumption"),
                         wels_registration_number = dr.GetString("wels_registration_number"),
                         delay_start = dr.GetString("delay_start"),
