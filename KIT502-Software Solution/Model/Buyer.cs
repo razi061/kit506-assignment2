@@ -14,6 +14,8 @@ namespace KIT502_Software_Solution.Model
         public string email { get; set; }
         public string address { get; set; }
 
+        public const string TABLE_NAME = "buyer";
+
         public Buyer()
         {
             this.id = 0;
