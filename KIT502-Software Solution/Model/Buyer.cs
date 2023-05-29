@@ -29,7 +29,7 @@ namespace KIT502_Software_Solution.Model
             return this.name;
         }
 
-        public static IList<Buyer> Convert(MySqlDataReader? dr)
+        private static IList<Buyer> Convert(MySqlDataReader? dr)
         {
             var buyerList = new List<Buyer>();
 

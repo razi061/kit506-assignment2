@@ -16,6 +16,7 @@ namespace KIT502_Software_Solution.Model
         public string name { get; set; }
         public int? low_discount_level { get; set; }
         public int? high_discount_level { get; set; }
+        public string table_name { get; set; }
 
         public const string TABLE_NAME = "category";
 
@@ -25,6 +26,7 @@ namespace KIT502_Software_Solution.Model
             this.name = string.Empty;
             this.low_discount_level = null;
             this.high_discount_level = null;
+            this.table_name = string.Empty;
         }
 
         public static IList<Category> LoadAll(bool addAll = false)
@@ -74,7 +76,8 @@ namespace KIT502_Software_Solution.Model
                         id = dr.GetInt32("id"),
                         name = dr.GetString("name"),
                         low_discount_level = dr.GetInt32("low_discount_level"),
-                        high_discount_level = dr.GetInt32("high_discount_level")
+                        high_discount_level = dr.GetInt32("high_discount_level"),
+                        table_name = dr.GetString("table_name")
                     });
                 }
             }

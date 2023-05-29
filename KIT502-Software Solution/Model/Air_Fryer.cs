@@ -7,43 +7,39 @@ using MySql.Data.MySqlClient;
 
 namespace KIT502_Software_Solution.Model
 {
-    internal class Delivery_Schedule
+    internal class Air_Fryer
     {
         public int id { get; set; }
-        public int purchase_id { get; set; }
         public int product_id { get; set; }
-        public string status { get; set; }
+        public string colour { get; set; }
 
-        public const string TABLE_NAME = "delivery_schedule";
+        public const string TABLE_NAME = "air_fryer";
 
-
-        public Delivery_Schedule()
+        public Air_Fryer()
         {
             this.id = 0;
-            this.purchase_id = 0;
             this.product_id = 0;
-            this.status = string.Empty;
-
+            this.colour = string.Empty;
         }
 
-        private static IList<Delivery_Schedule> Convert(MySqlDataReader? dr)
+        private static IList<Air_Fryer> Convert(MySqlDataReader? dr)
         {
-            var deliveryScheduleList = new List<Delivery_Schedule>();
+            var airFryerList = new List<Air_Fryer>();
 
             if (dr != null && dr.HasRows)
             {
                 while (dr.Read())
                 {
-                    deliveryScheduleList.Add(new Delivery_Schedule
+                    airFryerList.Add(new Air_Fryer
                     {
                         id = dr.GetInt32("id"),
-                        purchase_id = dr.GetInt32("purchase_id"),
                         product_id = dr.GetInt32("product_id"),
-                        status = dr.GetString("status")
+                        colour = dr.GetString("colour")
                     });
                 }
             }
-            return deliveryScheduleList;
+
+            return airFryerList;
         }
     }
 }

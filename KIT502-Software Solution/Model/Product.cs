@@ -14,6 +14,10 @@ namespace KIT502_Software_Solution.Model
         public string name { get; set; }
         public int category_id { get; set; }
         public double energy_rating { get; set; }
+        public string barcode { get; set; }
+        public string product_type { get; set; }
+        public string brand { get; set; }
+        public string model { get; set; }
         public double width { get; set; }
         public double height { get; set; }
         public double depth { get; set; }
@@ -34,6 +38,10 @@ namespace KIT502_Software_Solution.Model
             this.id = 0;
             this.name = string.Empty;
             this.category_id = 0;
+            this.barcode = string.Empty;
+            this.product_type = string.Empty;
+            this.brand = string.Empty;
+            this.model = string.Empty;
             this.energy_rating = 0;
             this.width = 0;
             this.height = 0;
@@ -138,6 +146,10 @@ namespace KIT502_Software_Solution.Model
                         id = dr.GetInt32("id"),
                         name = dr.GetString("name"),
                         category_id = dr.GetInt32("category_id"),
+                        barcode = dr.GetString("barcode"),
+                        product_type = dr.GetString("product_type"),
+                        brand = dr.GetString("brand"),
+                        model = dr.GetString("model"),
                         energy_rating = dr.GetInt32("energy_rating"),
                         width = dr.GetInt32("width"),
                         height = dr.GetInt32("height"),

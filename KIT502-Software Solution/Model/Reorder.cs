@@ -41,7 +41,7 @@ namespace KIT502_Software_Solution.Model
                 try
                 {
                     MySqlCommand comm = conn.CreateCommand();
-                    comm.CommandText = "INSERT INTO "+TABLE_NAME+"(product_id, quantity, comments, reorder_datetime) " +
+                    comm.CommandText = "INSERT INTO " + TABLE_NAME + "(product_id, quantity, comments, reorder_datetime) " +
                         "VALUES(@product_id, @quantity, @comments, @reorder_datetime)";
                     comm.Parameters.AddWithValue("@product_id", product_id);
                     comm.Parameters.AddWithValue("@quantity", quantity);
@@ -49,7 +49,7 @@ namespace KIT502_Software_Solution.Model
                     comm.Parameters.AddWithValue("@reorder_datetime", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                     int result = comm.ExecuteNonQuery();
 
-                    if (result <= 0) 
+                    if (result <= 0)
                     {
                         msg = new Message(Message.MessageTypes.Error, "Insert unsuccessfull.");
                     }

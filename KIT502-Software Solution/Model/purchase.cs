@@ -7,7 +7,7 @@ using MySql.Data.MySqlClient;
 
 namespace KIT502_Software_Solution.Model
 {
-    internal class purchase
+    internal class Purchase
     {
         public int id { get; set; }
         public int product_id { get; set; }
@@ -23,7 +23,7 @@ namespace KIT502_Software_Solution.Model
 
         public const string TABLE_NAME = "purchase";
 
-        public purchase()
+        public Purchase()
         {
             this.id = 0;
             this.product_id = 0;
@@ -36,6 +36,34 @@ namespace KIT502_Software_Solution.Model
             this.total = 0;
             this.purchase_datetime = new DateTime();
             this.home_delivery = false;
+        }
+
+        private static IList<Purchase> Convert(MySqlDataReader? dr)
+        {
+            var purchaseList = new List<Purchase>();
+
+            if (dr != null && dr.HasRows)
+            {
+                while (dr.Read())
+                {
+                    purchaseList.Add(new Purchase()
+                    {
+                        id = dr.GetInt32("id"),
+                        product_id = dr.GetInt32("product_id"),
+                        sales_price = dr.GetInt32("sales_price"),
+                        quantity = dr.GetInt32("quantity"),
+                        voucher_id = dr.GetInt32("voucher_id"),
+                        buyer_id = dr.GetInt32("buyer_id"),
+                        payment_type_id = dr.GetInt32("payment_type_id"),
+                        payment_details = dr.GetString("payment_details"),
+                        total = dr.GetInt32("total"),
+                        purchase_datetime = dr.GetDateTime("purchase_datetime"),
+                        home_delivery = dr.GetBoolean("home_delivery")
+                    });
+                }
+            }
+
+            return purchaseList;
         }
     }
 }
