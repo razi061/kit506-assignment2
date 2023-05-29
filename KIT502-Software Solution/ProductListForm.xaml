@@ -18,61 +18,107 @@
         <GroupBox x:Name="grpProductDetails" Height="703" Header="ProductName" Canvas.Left="467" Canvas.Top="188" Width="738" HorizontalAlignment="Center" VerticalAlignment="Top">
             <Canvas Height="682">
                 <Label Content="Product Code: " Canvas.Left="38" Canvas.Top="30" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <Image x:Name="imgImage" Height="135" Canvas.Left="400" Canvas.Top="30" Width="293" HorizontalAlignment="Left" VerticalAlignment="Top" OpacityMask="#FF1F1C1C"/>
+                <Image x:Name="imgImage" Height="178" Canvas.Left="387" Canvas.Top="31" Width="293" HorizontalAlignment="Left" VerticalAlignment="Top" OpacityMask="#FF1F1C1C"/>
                 <Label Content="Product Type:" Canvas.Left="43" Canvas.Top="60" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.515,2.18"/>
                 <Label Content="Brand: " Canvas.Left="81" Canvas.Top="90" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.635,0.391"/>
                 <Label Content="Model:" Canvas.Left="82" Canvas.Top="120" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <Label Content="Range: " Canvas.Left="79" Canvas.Top="150" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <Label Content="Screen Type:" Canvas.Left="50" Canvas.Top="180" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.558,-0.334"/>
-                <Label Content="Screen Size (in):" Canvas.Left="32" Canvas.Top="210" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <Label Content="Screen Definition:" Canvas.Left="21" Canvas.Top="240" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <Label Content="Screen Resolution:" Canvas.Left="17" Canvas.Top="270" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <Label Content="HDMI Ports:" Canvas.Left="52" Canvas.Top="300" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <Label Content="USB Ports:" Canvas.Left="62" Canvas.Top="331" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 <Label Canvas.Left="63" Canvas.Top="361" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.528,1.989"/>
-                <Label Content="3 Years &#xD;&#xA;Reviewer Rating:" Canvas.Left="26" Canvas.Top="390" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <Label Content="Connectivity:" Canvas.Left="48" Canvas.Top="360" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <Label Content="Energy Efficiency:" Canvas.Left="23" Canvas.Top="440" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <Label Content="Performance:" Canvas.Left="45" Canvas.Top="470" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <Label Content="Home Delivery:" Canvas.Left="35" Canvas.Top="500" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <Label Content="Width (cm):" Canvas.Left="426" Canvas.Top="210" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.903,-0.459"/>
-                <Label Content="Depth (cm):" Canvas.Left="426" Canvas.Top="240" FontWeight="Bold" RenderTransformOrigin="0.903,-0.459" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <Label Content="Height (cm):" Canvas.Left="426" Canvas.Top="270" FontWeight="Bold" RenderTransformOrigin="0.903,-0.459" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <Label Content="Weight:" Canvas.Left="452" Canvas.Top="300" FontWeight="Bold" RenderTransformOrigin="0.903,-0.459" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <Label Content="Express &#xD;&#xA;Warrenty (months):" Canvas.Left="386" Canvas.Top="330" FontWeight="Bold" RenderTransformOrigin="0.903,-0.459" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <Label Content="Stock:" Canvas.Left="462" Canvas.Top="380" FontWeight="Bold" RenderTransformOrigin="0.903,-0.459" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <Label Content="Listed Price:" Canvas.Left="429" Canvas.Top="410" FontWeight="Bold" RenderTransformOrigin="0.903,-0.459" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <Label Content="Minimum Price:" Canvas.Left="408" Canvas.Top="440" FontWeight="Bold" RenderTransformOrigin="0.903,-0.459" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <Label Content="Base Price:" Canvas.Left="436" Canvas.Top="470" FontWeight="Bold" RenderTransformOrigin="0.903,-0.459" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <Button x:Name="btnEditProduct" Content="Edit Product" Canvas.Left="50" Canvas.Top="575" RenderTransformOrigin="0.429,-0.196" Height="25" Width="125" HorizontalAlignment="Center" VerticalAlignment="Top" Click="btnEditProduct_Click"/>
-                <Button x:Name="btnDeleteProduct" Content="Delete Product" Canvas.Left="200" Canvas.Top="575" RenderTransformOrigin="0.429,-0.196" Height="25" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <Button x:Name="btnAddToCart" Content="Add to Cart" Canvas.Left="50" Canvas.Top="620" RenderTransformOrigin="0.429,-0.196" Height="25" Width="125" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Button x:Name="btnSalesHistory" Content="Sales History" Canvas.Left="200" Canvas.Top="620" RenderTransformOrigin="0.429,-0.196" Height="25" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label Content="User Rating:" Canvas.Left="52" Canvas.Top="420" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="2.413,0.98"/>
+                <Label Content="Home Delivery:" Canvas.Left="34" Canvas.Top="390" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Label Content="Width (cm):" Canvas.Left="54" Canvas.Top="150" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.903,-0.459"/>
+                <Label Content="Height (cm):" Canvas.Left="51" Canvas.Top="180" FontWeight="Bold" RenderTransformOrigin="0.903,-0.459" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label Content="Weight:" Canvas.Left="76" Canvas.Top="210" FontWeight="Bold" RenderTransformOrigin="0.903,-0.459" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Label Content="Warrenty (months):" Canvas.Left="12" Canvas.Top="240" FontWeight="Bold" RenderTransformOrigin="0.903,-0.459" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Label Content="Stock:" Canvas.Left="86" Canvas.Top="270" FontWeight="Bold" RenderTransformOrigin="0.903,-0.459" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Label Content="Listed Price:" Canvas.Left="53" Canvas.Top="300" FontWeight="Bold" RenderTransformOrigin="0.903,-0.459" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Label Content="Minimum Price:" Canvas.Left="31" Canvas.Top="330" FontWeight="Bold" RenderTransformOrigin="0.903,-0.459" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Label Content="Base Price:" Canvas.Left="60" Canvas.Top="360" FontWeight="Bold" RenderTransformOrigin="0.903,-0.459" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Button x:Name="btnEditProduct" Content="Edit Product" Canvas.Left="50" Canvas.Top="536" RenderTransformOrigin="0.429,-0.196" Height="26" Width="125" HorizontalAlignment="Center" VerticalAlignment="Top" Click="btnEditProduct_Click"/>
+                <Button x:Name="btnDeleteProduct" Content="Delete Product" Canvas.Left="200" Canvas.Top="537" RenderTransformOrigin="0.429,-0.196" Height="25" Width="125" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Button x:Name="btnAddToCart" Content="Add to Cart" Canvas.Left="50" Canvas.Top="494" RenderTransformOrigin="0.429,-0.196" Height="25" Width="125" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Button x:Name="btnSalesHistory" Content="Sales History" Canvas.Left="200" Canvas.Top="494" RenderTransformOrigin="0.429,-0.196" Height="25" Width="125" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 <Label x:Name="lblProductCode" Content="" Canvas.Left="150" Canvas.Top="30" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 <Label x:Name="lblProductType" Content="" Canvas.Left="150" Canvas.Top="60" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 <Label x:Name="lblBrand" Content="" Canvas.Left="150" Canvas.Top="90" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 <Label x:Name="lblModel" Content="" Canvas.Left="150" Canvas.Top="120" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <Label x:Name="lblRange" Content="" Canvas.Left="150" Canvas.Top="150" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <Label x:Name="lblScreenType" Content="" Canvas.Left="150" Canvas.Top="180" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <Label x:Name="lblScreenSize" Content="" Canvas.Left="150" Canvas.Top="210" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <Label x:Name="lblScreenDefinition" Content="" Canvas.Left="150" Canvas.Top="240" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <Label x:Name="lblScreenResolution" Content="" Canvas.Left="150" Canvas.Top="270" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <Label x:Name="lblHdmiPorts" Content="" Canvas.Left="150" Canvas.Top="300" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <Label x:Name="lblUsbPorts" Content="" Canvas.Left="150" Canvas.Top="330" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <Label x:Name="lblConnectivity" Content="" Canvas.Left="150" Canvas.Top="360" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <Label x:Name="lbl3YearsReviewerRating" Content="" Canvas.Left="150" Canvas.Top="410" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <Label x:Name="lblEnergyEfficiency" Content="" Canvas.Left="150" Canvas.Top="440" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <Label x:Name="lblPerformance" Content="" Canvas.Left="150" Canvas.Top="470" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <Label x:Name="lblHomeDelivery" Content="" Canvas.Left="150" Canvas.Top="500" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <Label x:Name="lblWidth" Content="" Canvas.Left="520" Canvas.Top="210" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <Label x:Name="lblDepth" Content="" Canvas.Left="520" Canvas.Top="240" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <Label x:Name="lblHeight" Content="" Canvas.Left="520" Canvas.Top="270" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <Label x:Name="lblWeight" Content="" Canvas.Left="520" Canvas.Top="300" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <Label x:Name="lblExpressWarrenty" Content="" Canvas.Left="520" Canvas.Top="350" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <Label x:Name="lblStock" Content="" Canvas.Left="520" Canvas.Top="380" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <Label x:Name="lblListedPrice" Content="" Canvas.Left="520" Canvas.Top="410" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <Label x:Name="lblMinimumPrice" Content="" Canvas.Left="520" Canvas.Top="440" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <Label x:Name="lblBasePrice" Content="" Canvas.Left="520" Canvas.Top="470" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Label x:Name="lblWidth" Content="" Canvas.Left="150" Canvas.Top="150" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label x:Name="lblHeight" Content="" Canvas.Left="150" Canvas.Top="180" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label x:Name="lblWeight" Content="" Canvas.Left="150" Canvas.Top="210" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label x:Name="lblWarrenty" Content="" Canvas.Left="150" Canvas.Top="240" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label x:Name="lblHomeDelivery" Content="" Canvas.Left="150" Canvas.Top="390" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="lblStock" Content="" Canvas.Left="150" Canvas.Top="270" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="lblListedPrice" Content="" Canvas.Left="150" Canvas.Top="300" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="lblMinimumPrice" Content="" Canvas.Left="150" Canvas.Top="330" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="lblBasePrice" Content="" Canvas.Left="150" Canvas.Top="360" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="lblUserRating" Content="" Canvas.Left="150" Canvas.Top="420" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Canvas x:Name="cnvTV" Height="369" Width="332" Canvas.Left="368" Canvas.Top="250" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Visible">
+                    <Canvas.Background>
+                        <SolidColorBrush Color="#FFE3E3E3"/>
+                    </Canvas.Background>
+                    <Label Content="Connectivity:" Canvas.Left="28" Canvas.Top="170" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Label Content="Range: " Canvas.Left="60" Canvas.Top="20" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Label Content="Screen Type:" Canvas.Top="50" FontWeight="Bold" RenderTransformOrigin="0.558,-0.334" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="31"/>
+                    <Label Content="Screen Size (in):" Canvas.Left="13" Canvas.Top="140" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Label Content="Screen Definition:" Canvas.Left="1" Canvas.Top="80" FontWeight="Bold" RenderTransformOrigin="5.274,5.28" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Label Content="Screen Resolution:" Canvas.Left="-2" Canvas.Top="110" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Label Content="HDMI Ports:" Canvas.Left="33" Canvas.Top="200" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Label Content="USB Ports:" Canvas.Left="43" Canvas.Top="230" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Label x:Name="lblTvRange" Content="" Canvas.Left="120" Canvas.Top="20" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Label x:Name="lblTvScreenType" Content="" Canvas.Left="120" Canvas.Top="50" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.6,0.003"/>
+                    <Label x:Name="lblTvScreenDefinition" Content="" Canvas.Left="120" Canvas.Top="80" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <Label x:Name="lblTvScreenResolution" Content="" Canvas.Left="120" Canvas.Top="110" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <Label x:Name="lblTvScreenSize" Content="" Canvas.Left="120" Canvas.Top="140" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <Label x:Name="lblTvConnectivity" Content="" Canvas.Left="120" Canvas.Top="170" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Label x:Name="lblTvHdmiPorts" Content="" Canvas.Left="120" Canvas.Top="200" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.3,7.322"/>
+                    <Label x:Name="lblTvUsbPorts" Content="" Canvas.Left="120" Canvas.Top="230" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                </Canvas>
+                <Canvas x:Name="cnvFridge" Height="368" Width="332" Canvas.Left="368" Canvas.Top="250" Visibility="Visible" Background="#FFE3E3E3" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Label Content="Color:" Canvas.Left="75" Canvas.Top="20" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Label Content="Fridge Features:" Canvas.Top="50" FontWeight="Bold" RenderTransformOrigin="0.558,-0.334" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="19"/>
+                    <Label Content="Freezer Capacity:" Canvas.Left="13" Canvas.Top="240" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Label Content="Fridge Capacity:" Canvas.Left="19" Canvas.Top="130" FontWeight="Bold" RenderTransformOrigin="5.274,5.28" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <Label Content="Freezer Features:" Canvas.Left="14" Canvas.Top="160" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Label x:Name="lblFridgeColor" Content="" Canvas.Left="135" Canvas.Top="20" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Label x:Name="LblFridgeFridgeFeatures" Content="" Canvas.Left="135" Canvas.Top="50" HorizontalAlignment="Left" VerticalAlignment="Top" Height="68" Width="186"/>
+                    <Label x:Name="lblFridgeFridgeCapacity" Content="" Canvas.Left="135" Canvas.Top="130" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <Label x:Name="LblFridgeFreezerFeatures" Content="" Canvas.Left="135" Canvas.Top="160" Height="68" Width="186" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <Label x:Name="lblFridgeFreezerCapacity" Content="" Canvas.Left="135" Canvas.Top="240" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                </Canvas>
+                <Canvas x:Name="cnvWashingMachine" Height="368" Width="332" Canvas.Left="368" Canvas.Top="250" Visibility="Visible" Background="#FFE3E3E3" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Label Content="Color:" Canvas.Left="86" Canvas.Top="20" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Label Content="Power Consumption:" Canvas.Top="50" FontWeight="Bold" RenderTransformOrigin="0.558,-0.334" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="3"/>
+                    <Label Content="Reg. Number:" Canvas.Left="42" Canvas.Top="140" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Label Content="Water Efficiency:" Canvas.Left="25" Canvas.Top="80" FontWeight="Bold" RenderTransformOrigin="5.274,5.28" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Label Content="Water Consumption:" Canvas.Left="4" Canvas.Top="110" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Label x:Name="lblWmColor" Content="" Canvas.Left="140" Canvas.Top="20" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Label Content="Delay Start:" Canvas.Left="55" Canvas.Top="170" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Label Content="Washing Capacity:" Canvas.Left="17" Canvas.Top="200" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Label Content="Internal Tube &#xD;&#xA;Material:" Canvas.Left="41" Canvas.Top="231" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Label x:Name="lblWmPowerConsumption" Content="" Canvas.Left="140" Canvas.Top="50" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <Label x:Name="lblWmWaterEffieiency" Content="" Canvas.Left="140" Canvas.Top="80" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <Label x:Name="lblWmWaterConsumption" Content="" Canvas.Left="140" Canvas.Top="110" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="1.5,4.24"/>
+                    <Label x:Name="lblWmRegistrationNumber" Content="" Canvas.Left="140" Canvas.Top="140" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <Label x:Name="lblWmDelayStart" Content="" Canvas.Left="140" Canvas.Top="170" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <Label x:Name="lblWmWashingCapacity" Content="" Canvas.Left="140" Canvas.Top="200" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <Label x:Name="lblWmInternalTubeMaterial" Content="" Canvas.Left="140" Canvas.Top="247" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.7,2.006"/>
+                </Canvas>
+                <Canvas x:Name="cnvVacuumCleaner" Height="368" Width="332" Canvas.Left="368" Canvas.Top="250" Visibility="Visible" Background="#FFE3E3E3" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Label Content="Color:" Canvas.Left="86" Canvas.Top="20" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Label Content="Max Capacity:" Canvas.Top="50" FontWeight="Bold" RenderTransformOrigin="0.558,-0.334" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="40"/>
+                    <Label Content="Vacuum Bag:" Canvas.Left="47" Canvas.Top="80" FontWeight="Bold" RenderTransformOrigin="5.274,5.28" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Label Content="Standard Runtime:" Canvas.Left="14" Canvas.Top="110" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Label x:Name="lblVcColor" Content="" Canvas.Left="140" Canvas.Top="20" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Label x:Name="lblVcMaxCapacity" Content="" Canvas.Left="140" Canvas.Top="50" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <Label x:Name="lblVcVacuumBag" Content="" Canvas.Left="140" Canvas.Top="80" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <Label x:Name="lblVcStandardRuntime" Content="" Canvas.Left="140" Canvas.Top="110" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="1.5,4.24"/>
+                </Canvas>
+                <Canvas x:Name="cnvAirFryer" Height="368" Width="332" Canvas.Left="368" Canvas.Top="250" Visibility="Visible" Background="#FFE3E3E3" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Label Content="Color:" Canvas.Left="41" Canvas.Top="20" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Label x:Name="lblAfColor" Content="" Canvas.Left="99" Canvas.Top="20" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="-2.3,0.658"/>
+                    <Label x:Name="lblVcMaxCapacity1" Content="" Canvas.Left="140" Canvas.Top="50" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <Label x:Name="lblVcVacuumBag1" Content="" Canvas.Left="140" Canvas.Top="80" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <Label x:Name="lblVcStandardRuntime1" Content="" Canvas.Left="140" Canvas.Top="110" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="1.5,4.24"/>
+                </Canvas>
             </Canvas>
         </GroupBox>
     </Canvas>

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using MySql.Data.MySqlClient;
+using KIT502_Software_Solution.DBUtility;
 
 namespace KIT502_Software_Solution.Model
 {
@@ -16,7 +18,7 @@ namespace KIT502_Software_Solution.Model
         public string vacuum_bag { get; set; }
         public int standard_run_time { get; set; }
 
-        public const string TABLE_NAME = "vaccum_cleaner";
+        public const string TABLE_NAME = "vacuum_cleaner";
 
         public Vacuum_Cleaner()
         {
@@ -26,6 +28,34 @@ namespace KIT502_Software_Solution.Model
             this.max_capacity = 0;
             this.vacuum_bag = string.Empty;
             this.standard_run_time = 0;
+        }
+
+        public static Vacuum_Cleaner GetByProductId(int productId)
+        {
+            Vacuum_Cleaner product = new Vacuum_Cleaner();
+            MySqlDataReader? dr = null;
+
+            using (var conn = DbConnection.OpenDbConnection())
+            {
+                try
+                {
+                    using (var cmd = new MySqlCommand("SELECT * FROM " + TABLE_NAME + " WHERE product_id=" + productId, conn))
+                    {
+                        dr = cmd.ExecuteReader();
+                        product = Convert(dr)[0];
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
+                finally
+                {
+                    DbConnection.CloseDbConnection();
+                }
+            }
+
+            return product;
         }
 
         private static IList<Vacuum_Cleaner> Convert(MySqlDataReader? dr)

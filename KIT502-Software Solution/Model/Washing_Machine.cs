@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using MySql.Data.MySqlClient;
+using KIT502_Software_Solution.DBUtility;
 
 namespace KIT502_Software_Solution.Model
 {
@@ -34,6 +36,34 @@ namespace KIT502_Software_Solution.Model
             this.delay_start = string.Empty;
             this.washing_capacity = 0;
             this.internal_tube_material = string.Empty;
+        }
+
+        public static Washing_Machine GetByProductId(int productId)
+        {
+            Washing_Machine product = new Washing_Machine();
+            MySqlDataReader? dr = null;
+
+            using (var conn = DbConnection.OpenDbConnection())
+            {
+                try
+                {
+                    using (var cmd = new MySqlCommand("SELECT * FROM " + TABLE_NAME + " WHERE product_id=" + productId, conn))
+                    {
+                        dr = cmd.ExecuteReader();
+                        product = Convert(dr)[0];
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
+                finally
+                {
+                    DbConnection.CloseDbConnection();
+                }
+            }
+
+            return product;
         }
 
         private static IList<Washing_Machine> Convert(MySqlDataReader? dr)

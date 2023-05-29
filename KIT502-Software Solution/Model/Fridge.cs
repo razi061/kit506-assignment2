@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using MySql.Data.MySqlClient;
+using KIT502_Software_Solution.DBUtility;
 
 namespace KIT502_Software_Solution.Model
 {
@@ -28,6 +30,34 @@ namespace KIT502_Software_Solution.Model
             this.fridge_capacity = 0;
             this.freezer_features = string.Empty;
             this.freezer_capacity = 0;
+        }
+
+        public static Fridge GetByProductId(int productId)
+        {
+            Fridge product = new Fridge();
+            MySqlDataReader? dr = null;
+
+            using (var conn = DbConnection.OpenDbConnection())
+            {
+                try
+                {
+                    using (var cmd = new MySqlCommand("SELECT * FROM " + TABLE_NAME + " WHERE product_id=" + productId, conn))
+                    {
+                        dr = cmd.ExecuteReader();
+                        product = Convert(dr)[0];
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
+                finally
+                {
+                    DbConnection.CloseDbConnection();
+                }
+            }
+
+            return product;
         }
 
         private static IList<Fridge> Convert(MySqlDataReader? dr)

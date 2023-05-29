@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using MySql.Data.MySqlClient;
+using KIT502_Software_Solution.DBUtility;
 
 namespace KIT502_Software_Solution.Model
 {
@@ -34,6 +36,34 @@ namespace KIT502_Software_Solution.Model
             this.no_hdmi_ports = 0;
             this.no_usb_ports = 0;
             this.connectivity = string.Empty;
+        }
+
+        public static Tv GetByProductId(int productId)
+        {
+            Tv product = new Tv();
+            MySqlDataReader? dr = null;
+
+            using (var conn = DbConnection.OpenDbConnection())
+            {
+                try
+                {
+                    using (var cmd = new MySqlCommand("SELECT * FROM " + TABLE_NAME + " WHERE product_id=" + productId, conn))
+                    {
+                        dr = cmd.ExecuteReader();
+                        product = Convert(dr)[0];
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
+                finally
+                {
+                    DbConnection.CloseDbConnection();
+                }
+            }
+
+            return product;
         }
 
         private static IList<Tv> Convert(MySqlDataReader? dr)
