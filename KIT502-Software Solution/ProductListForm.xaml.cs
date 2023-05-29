@@ -22,6 +22,8 @@ namespace KIT502_Software_Solution
     /// </summary>
     public partial class ProductListForm : Window
     {
+        private Product Selected_Product = new Product();
+
         public ProductListForm()
         {
             InitializeComponent();
@@ -32,20 +34,27 @@ namespace KIT502_Software_Solution
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             this.lbProductList.ItemsSource = null;
-
-            var categoryId = ValueConvert.ToInt(this.cmbCategory.SelectedValue.ToString());
-            var query = this.txtSearch.Text.Trim();
-
-            var productList = Product.Find(categoryId, query);
-            this.lbProductList.ItemsSource = productList;
-            this.lbProductList.SelectedValuePath = "id";
-            this.lbProductList.DisplayMemberPath = "name";
+            this.Selected_Product = new Product();
+            this.SearchProducts();
         }
 
         private void btnEditProduct_Click(object sender, RoutedEventArgs e)
         {
             var pdf = new ProductEditForm();
             pdf.ShowDialog();
+        }
+
+        private void btnReorderProduct_Click(object sender, RoutedEventArgs e)
+        {
+            if(this.Selected_Product.id > 0)
+            {
+                var rof = new ReorderForm(this.Selected_Product.id);
+                rof.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Please select a product and try again.");
+            }
         }
 
         private void PopulateData()
@@ -55,6 +64,23 @@ namespace KIT502_Software_Solution
             this.cmbCategory.SelectedValuePath = "id";
             this.cmbCategory.DisplayMemberPath = "name";
             this.cmbCategory.SelectedValue = 0;
+            this.SearchProducts();
+        }
+
+        private void SearchProducts()
+        {
+            var categoryId = ValueConvert.ToInt(this.cmbCategory.SelectedValue.ToString());
+            var query = this.txtSearch.Text.Trim();
+
+            var productList = Product.Find(categoryId, query);
+            this.lbProductList.ItemsSource = productList;
+            this.lbProductList.SelectedValuePath = "id";
+            this.lbProductList.DisplayMemberPath = "name";
+        }
+
+        private void lbProductList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.Selected_Product = (Product)lbProductList.SelectedItem;            
         }
     }
 }

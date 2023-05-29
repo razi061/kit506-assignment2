@@ -50,6 +50,34 @@ namespace KIT502_Software_Solution.Model
             this.photo = string.Empty;
         }
 
+        public static Product GetById(int id)
+        {
+            Product product = new Product();
+            MySqlDataReader? dr = null;
+
+            using (var conn = DbConnection.OpenDbConnection())
+            {
+                try
+                {
+                    using (var cmd = new MySqlCommand("SELECT * FROM " + TABLE_NAME + " WHERE id=" + id, conn))
+                    {
+                        dr = cmd.ExecuteReader();
+                        product = Convert(dr)[0];
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
+                finally
+                {
+                    DbConnection.CloseDbConnection();
+                }
+            }
+
+            return product;
+        }
+
         public static IList<Product> Find(int categoryId, string query)
         {
             IList<Product> productList = new List<Product>();
