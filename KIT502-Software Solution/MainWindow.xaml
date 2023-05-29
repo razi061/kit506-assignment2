@@ -1,0 +1,17 @@
+﻿<Window x:Class="KIT502_Software_Solution.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KIT502_Software_Solution"
+        mc:Ignorable="d"
+        Title="Inventory and Sales Management System (IMS)" Height="481" Width="1019" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Canvas>
+        <Label Content="Welcome to" Canvas.Left="10" Canvas.Top="49" VerticalAlignment="Center" Width="999" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Label Content="Inventory and Sales Management Systems (IMS)" Canvas.Left="10" Canvas.Top="80" Width="999" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+        <Button x:Name="btnCategoryList" Content="Category List" Canvas.Left="231" Canvas.Top="174" Height="67" Width="173" Click="btnCategoryList_Click_1"/>
+        <Button x:Name="btnProductSearch" Content="Product Search" Canvas.Left="549" Canvas.Top="174" Height="67" Width="173" HorizontalAlignment="Left" VerticalAlignment="Center" Click="btnProductSearch_Click_1"/>
+        <Button x:Name="btnSalesReport" Content="Sales Report" Canvas.Left="231" Canvas.Top="308" Height="67" Width="173" HorizontalAlignment="Center" VerticalAlignment="Top" Click="btnSalesReport_Click"/>
+        <Button x:Name="btnLogout" Content="Logout" Canvas.Left="549" Canvas.Top="295" Height="67" Width="173" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnLogout_Click"/>
+    </Canvas>
+</Window>
