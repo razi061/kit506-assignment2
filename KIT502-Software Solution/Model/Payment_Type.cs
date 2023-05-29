@@ -12,11 +12,15 @@ namespace KIT502_Software_Solution.Model
         public int id { get; set; }
         public string name { get; set; }
 
+        public const string TABLE_NAME = "payment_type";
+
+
         public Payment_Type()
         {
             this.id = 0;
             this.name = string.Empty;
         }
+
 
         public override string ToString()
         {

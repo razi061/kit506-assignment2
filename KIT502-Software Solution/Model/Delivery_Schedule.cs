@@ -14,6 +14,9 @@ namespace KIT502_Software_Solution.Model
         public int product_id { get; set; }
         public string status { get; set; }
 
+        public const string TABLE_NAME = "delivery_schedule";
+
+
         public Delivery_Schedule()
         {
             this.id = 0;
