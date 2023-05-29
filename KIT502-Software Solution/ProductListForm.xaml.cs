@@ -43,8 +43,15 @@ namespace KIT502_Software_Solution
 
         private void btnEditProduct_Click(object sender, RoutedEventArgs e)
         {
-            var pdf = new ProductEditForm();
-            pdf.ShowDialog();
+            if (this.Selected_Product.id > 0)
+            {
+                var pdf = new ProductEditForm(this.Selected_Product.id);
+                pdf.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Please select a product and try again.");
+            }
         }
 
         private void btnReorderProduct_Click(object sender, RoutedEventArgs e)

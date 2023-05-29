@@ -66,6 +66,64 @@ namespace KIT502_Software_Solution.Model
             return product;
         }
 
+        public static Message Save(Tv tv)
+        {
+            Message msg = new Message(Message.MessageTypes.Information, "Saved successfully");
+
+            using (var conn = DbConnection.OpenDbConnection())
+            {
+                try
+                {
+                    string str = "";
+
+                    if (tv.id <= 0)
+                    {
+                        str = "INSERT INTO " + TABLE_NAME + " (product_id, tv_range, screen_type, screen_size, screen_definition, " +
+                            "screen_resolution, no_hdmi_ports, no_usb_ports, connectivity) " +
+                            "VALUES (@product_id, @tv_range, @screen_type, @screen_size, @screen_definition, " +
+                            "@screen_resolution, @no_hdmi_ports, @no_usb_ports, @connectivity)";
+                    }
+                    else
+                    {
+                        str = "UPDATE " + TABLE_NAME + " SET product_id=@product_id, tv_range=@tv_range, screen_type=@screen_type, " +
+                            "screen_size=@screen_size, screen_definition=@screen_definition, screen_resolution=@screen_resolution, " +
+                            "no_hdmi_ports=@no_hdmi_ports, no_usb_ports=@no_usb_ports, connectivity=@connectivity WHERE id=" + tv.id;
+                    }
+
+
+
+                    MySqlCommand comm = conn.CreateCommand();
+                    comm.CommandText = str;
+                    comm.Parameters.AddWithValue("@product_id", tv.product_id);
+                    comm.Parameters.AddWithValue("@tv_range", tv.tv_range);
+                    comm.Parameters.AddWithValue("@screen_type", tv.screen_type);
+                    comm.Parameters.AddWithValue("@screen_size", tv.screen_size);
+                    comm.Parameters.AddWithValue("@screen_definition", tv.screen_definition);
+                    comm.Parameters.AddWithValue("@screen_resolution", tv.screen_resolution);
+                    comm.Parameters.AddWithValue("@no_hdmi_ports", tv.no_hdmi_ports);
+                    comm.Parameters.AddWithValue("@no_usb_ports", tv.no_usb_ports);
+                    comm.Parameters.AddWithValue("@connectivity", tv.connectivity);
+
+                    int result = comm.ExecuteNonQuery();
+
+                    if (result <= 0)
+                    {
+                        msg = new Message(Message.MessageTypes.Error, result.ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    msg = new Message(Message.MessageTypes.Error, "An error occurred. Details: " + ex.Message);
+                }
+                finally
+                {
+                    DbConnection.CloseDbConnection();
+                }
+            }
+
+            return msg;
+        }
+
         private static IList<Tv> Convert(MySqlDataReader? dr)
         {
             var tvList = new List<Tv>();

@@ -134,6 +134,69 @@ namespace KIT502_Software_Solution.Model
             return productList;
         }
 
+        public static Message Save(Product product)
+        {
+            Message msg = new Message(Message.MessageTypes.Information, "Saved successfully");
+
+            using (var conn = DbConnection.OpenDbConnection())
+            {
+                try
+                {
+                    string str = "";
+
+                    if(product.id <= 0)
+                    {
+                        str = "INSERT INTO " + TABLE_NAME + " (name, category_id, barcode, product_type, brand, model, energy_rating, " +
+                            "width, height, depth, weight, warrenty, stock, listed_price, minimum_price, base_price, home_delivery, user_rating) " +
+                            "VALUES (@name, @category_id, @barcode, @product_type, @brand, @model, @energy_rating, @width, @height, " +
+                            "@depth, @weight, @warrenty, @stock, @listed_price, @minimum_price, @base_price, @home_delivery, @user_rating)";
+                    }
+                    else
+                    {
+                        str = "UPDATE " + TABLE_NAME + " SET name=@name, barcode=@barcode, product_type=@product_type, brand=@brand, model=@model " +
+                            "energy_rating=@energy_rating, width=@width, height=@height, depth=@depth, weight=@weight, warrenty=@warrenty, " +
+                            "stock=@stock, listed_price=@listed_price, minimum_price=@minimum_price, base_price=@base_price, " +
+                            "home_delivery=@home_delivery, user_rating=@user_rating WHERE id="+product.id;
+                    }
+
+
+
+                    MySqlCommand comm = conn.CreateCommand();
+                    comm.CommandText = str;
+                    comm.Parameters.AddWithValue("@name", product.brand + " " + product.product_type + " " + product.model);
+                    comm.Parameters.AddWithValue("@barcode", product.barcode);
+                    comm.Parameters.AddWithValue("@product_type", product.barcode);
+                    comm.Parameters.AddWithValue("@brand", product.brand);
+                    comm.Parameters.AddWithValue("@model", product.model);
+                    comm.Parameters.AddWithValue("@energy_rating", product.energy_rating);
+                    comm.Parameters.AddWithValue("@width", product.width);
+                    comm.Parameters.AddWithValue("@height", product.height);
+                    comm.Parameters.AddWithValue("@depth", product.depth);
+                    comm.Parameters.AddWithValue("@weight", product.weight);
+                    comm.Parameters.AddWithValue("@warrenty", product.warranty);
+                    comm.Parameters.AddWithValue("@home_delivery", product.home_delivery);
+                    comm.Parameters.AddWithValue("@user_rating", product.user_rating);
+
+                    int result = comm.ExecuteNonQuery();
+
+                    if (result <= 0)
+                    {
+                        msg = new Message(Message.MessageTypes.Error, result.ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    msg = new Message(Message.MessageTypes.Error, "An error occurred. Details: " + ex.Message);
+                }
+                finally
+                {
+                    DbConnection.CloseDbConnection();
+                }
+            }
+
+            return msg;
+        }
+
         private static IList<Product> Convert(MySqlDataReader? dr)
         {
             var productList = new List<Product>();
