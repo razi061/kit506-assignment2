@@ -39,7 +39,8 @@ namespace KIT502_Software_Solution
 
         private void btnSalesReport_Click(object sender, RoutedEventArgs e)
         {
-
+            SalesReportForm srf = new SalesReportForm();
+            srf.ShowDialog();
         }
 
         private void btnLogout_Click(object sender, RoutedEventArgs e)
