@@ -306,7 +306,7 @@ namespace KIT502_Software_Solution
             }
 
 
-            if(this.Selected_Photo.Length > 0)
+            if (this.Selected_Photo.Length > 0)
             {
                 string fileName = Guid.NewGuid().ToString() + Path.GetExtension(this.Selected_Photo);
                 string destinationFileName = Environment.CurrentDirectory + "/images/" + fileName;
