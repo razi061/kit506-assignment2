@@ -235,6 +235,7 @@ namespace KIT502_Software_Solution
             this.Product.brand = this.txtBrand.Text.Trim();
             this.Product.model = this.txtModel.Text.Trim();
             this.Product.home_delivery = this.chkHomeDelivery.IsChecked == true ? true : false;
+
             if (double.TryParse(this.txtWidth.Text.Trim(), out tmp_double))
             {
                 this.Product.width = ValueConvert.ToDouble(this.txtWidth.Text.Trim());
@@ -342,6 +343,18 @@ namespace KIT502_Software_Solution
             else if (isNewProduct)
             {
                 this.Product.photo = "";
+            }
+
+            if(this.Product.minimum_price >= this.Product.listed_price)
+            {
+                MessageBox.Show("Minimum price should be less than listed price.");
+                return;
+            }
+
+            if (this.Product.base_price >= this.Product.listed_price)
+            {
+                MessageBox.Show("Base price should be less than listed price.");
+                return;
             }
 
             Message msg = Product.Save(this.Product);
