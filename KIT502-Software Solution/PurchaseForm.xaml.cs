@@ -129,7 +129,7 @@ namespace KIT502_Software_Solution
 
             if(quantity > this.Product.stock)
             {
-                MessageBox.Show("Current stock is this.Product.stock.");
+                MessageBox.Show("Current stock is " + this.Product.stock);
                 this.txtProductQuantity.Text = this.Product.stock.ToString();
                 quantity = this.Product.stock;
             }
