@@ -93,6 +93,38 @@ namespace KIT502_Software_Solution.Model
             return msg;
         }
 
+        public static IList<Purchase> GetPurchaseHistory(int productId, DateTime fromDate, DateTime toDate)
+        {
+            IList<Purchase> purchaseList = new List<Purchase>();
+            MySqlDataReader? dr = null;
+
+            string query = "SELECT * FROM " + TABLE_NAME + " WHERE product_id=" + productId + " AND " +
+                "DATE(purchase_datetime) >= '" + fromDate.ToString("yyyy-MM-dd") + "' AND " +
+                "DATE(purchase_datetime) <= '" + toDate.ToString("yyyy-MM-dd") + "'";
+
+            using (var conn = DbConnection.OpenDbConnection())
+            {
+                try
+                {
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        dr = cmd.ExecuteReader();
+                        purchaseList = Convert(dr);
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+                finally
+                {
+                    DbConnection.CloseDbConnection();
+                }
+            }
+
+            return purchaseList;
+        }
+
         private static IList<Purchase> Convert(MySqlDataReader? dr)
         {
             var purchaseList = new List<Purchase>();

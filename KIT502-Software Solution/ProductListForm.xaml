@@ -36,7 +36,7 @@
                 <Button x:Name="btnEditProduct" Content="Edit Product" Canvas.Left="50" Canvas.Top="536" RenderTransformOrigin="0.429,-0.196" Height="26" Width="125" HorizontalAlignment="Center" VerticalAlignment="Top" Click="btnEditProduct_Click"/>
                 <Button x:Name="btnDeleteProduct" Content="Delete Product" Canvas.Left="200" Canvas.Top="537" RenderTransformOrigin="0.429,-0.196" Height="25" Width="125" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 <Button x:Name="btnAddToCart" Content="Add to Cart" Canvas.Left="50" Canvas.Top="494" RenderTransformOrigin="0.429,-0.196" Height="25" Width="125" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <Button x:Name="btnSalesHistory" Content="Sales History" Canvas.Left="200" Canvas.Top="494" RenderTransformOrigin="0.429,-0.196" Height="25" Width="125" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Button x:Name="btnSalesHistory" Content="Sales History" Canvas.Left="200" Canvas.Top="494" RenderTransformOrigin="0.429,-0.196" Height="25" Width="125" HorizontalAlignment="Center" VerticalAlignment="Top" Click="btnSalesHistory_Click"/>
                 <Label x:Name="lblProductCode" Content="" Canvas.Left="150" Canvas.Top="30" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 <Label x:Name="lblProductType" Content="" Canvas.Left="150" Canvas.Top="60" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 <Label x:Name="lblBrand" Content="" Canvas.Left="150" Canvas.Top="90" HorizontalAlignment="Left" VerticalAlignment="Center"/>

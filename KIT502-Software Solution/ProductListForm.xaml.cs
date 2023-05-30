@@ -94,6 +94,19 @@ namespace KIT502_Software_Solution
             }
         }
 
+        private void btnSalesHistory_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.Selected_Product.id > 0)
+            {
+                SalesHistoryForm shf = new SalesHistoryForm(this.Selected_Product.id);
+                shf.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Please select a product and try again.");
+            }
+        }
+
         private void PopulateData()
         {
             var categoryList = Category.LoadAll(true);

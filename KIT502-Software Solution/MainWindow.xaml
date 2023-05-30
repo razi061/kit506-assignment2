@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KIT502_Software_Solution"
         mc:Ignorable="d"
-        Title="Inventory and Sales Management System (IMS)" Height="481" Width="1019" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
-    <Canvas>
-        <Label Content="Welcome to" Canvas.Left="10" Canvas.Top="49" VerticalAlignment="Center" Width="999" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
-        <Label Content="Inventory and Sales Management Systems (IMS)" Canvas.Left="10" Canvas.Top="80" Width="999" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Center"/>
-        <Button x:Name="btnCategoryList" Content="Category List" Canvas.Left="231" Canvas.Top="174" Height="67" Width="173" Click="btnCategoryList_Click_1"/>
-        <Button x:Name="btnProductSearch" Content="Product Search" Canvas.Left="549" Canvas.Top="174" Height="67" Width="173" HorizontalAlignment="Left" VerticalAlignment="Center" Click="btnProductSearch_Click_1"/>
-        <Button x:Name="btnSalesReport" Content="Sales Report" Canvas.Left="231" Canvas.Top="308" Height="67" Width="173" HorizontalAlignment="Center" VerticalAlignment="Top" Click="btnSalesReport_Click"/>
-        <Button x:Name="btnLogout" Content="Logout" Canvas.Left="549" Canvas.Top="295" Height="67" Width="173" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnLogout_Click"/>
+        Title="Inventory and Sales Management System (IMS)" Height="627" Width="830" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Canvas Background="#FFECE7E7">
+        <Label Content="Welcome to" Canvas.Top="49" VerticalAlignment="Center" Width="830" HorizontalAlignment="Left" HorizontalContentAlignment="Center" FontSize="20" Background="#FFEDEDED"/>
+        <Label Content="Inventory and Sales Management Systems (IMS)" Canvas.Top="86" Width="830" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" HorizontalContentAlignment="Center" Background="#FFEDEDED"/>
+        <Button x:Name="btnCategoryList" Content="Category List" Canvas.Left="193" Canvas.Top="240" Height="67" Width="173" Click="btnCategoryList_Click_1" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Background="#FF5B7ED6" Foreground="#FFEFEFEF" FontSize="18"/>
+        <Button x:Name="btnProductSearch" Content="Product Search" Canvas.Left="452" Canvas.Top="240" Height="67" Width="173" HorizontalAlignment="Left" VerticalAlignment="Center" Click="btnProductSearch_Click_1" FontWeight="Bold" Background="#FF5B7ED6" Foreground="#FFEFEFEF" FontFamily="Segoe UI" FontSize="18"/>
+        <Button x:Name="btnSalesReport" Content="Sales Report" Canvas.Left="193" Canvas.Top="372" Height="67" Width="173" HorizontalAlignment="Left" VerticalAlignment="Center" Click="btnSalesReport_Click" FontWeight="Bold" Background="#FF5B7ED6" Foreground="#FFEFEFEF" FontSize="18"/>
+        <Button x:Name="btnLogout" Content="Logout" Canvas.Left="452" Canvas.Top="367" Height="67" Width="173" HorizontalAlignment="Left" VerticalAlignment="Center" Click="btnLogout_Click" FontWeight="Bold" Background="#FF5B7ED6" Foreground="#FFEFEFEF" FontSize="18"/>
     </Canvas>
 </Window>
