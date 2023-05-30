@@ -24,6 +24,8 @@ namespace KIT502_Software_Solution
     /// </summary>
     public partial class ProductEditForm : Window
     {
+        private int tmp_int = 0;
+        private double tmp_double = 0;
         private Product? Product;
         private Tv? Tv;
         private Fridge? Fridge;
@@ -95,10 +97,12 @@ namespace KIT502_Software_Solution
                         this.SaveProduct();
                         this.Close();
                     }
-                    catch
+                    catch (Exception f)
                     {
-                        MessageBox.Show("Please fill up all the required fields.", "Not Completed Details",
-                            MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("The value of " + f.Message + " is invalid",
+                            "Invalid input",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Error);
                     }
                 }
             }
@@ -109,10 +113,12 @@ namespace KIT502_Software_Solution
                     this.SaveProduct();
                     this.Close();
                 }
-                catch
+                catch (Exception f)
                 {
-                    MessageBox.Show("Please fill up all the required fields.", "Not Completed Details",
-                        MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("The value of " + f.Message + " is invalid",
+                        "Invalid input",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error);
                 }
             }
         }
@@ -220,23 +226,85 @@ namespace KIT502_Software_Solution
                 this.Product = new Product();
                 isNewProduct = true;
             }
-            
-
             this.Product.category_id = ValueConvert.ToInt(this.cmbCategory.SelectedValue.ToString());
             this.Product.product_type = this.txtProductType.Text.Trim();
             this.Product.barcode = this.txtBarcode.Text.Trim();
             this.Product.brand = this.txtBrand.Text.Trim();
             this.Product.model = this.txtModel.Text.Trim();
-            this.Product.width = ValueConvert.ToInt(this.txtWidth.Text.Trim());
-            this.Product.height = ValueConvert.ToInt(this.txtHeight.Text.Trim());
-            this.Product.weight = ValueConvert.ToInt(this.txtWeight.Text.Trim());
-            this.Product.warranty = ValueConvert.ToInt(this.txtHeight.Text.Trim());
-            this.Product.stock = ValueConvert.ToInt(this.txtStock.Text.Trim());
-            this.Product.listed_price = ValueConvert.ToDouble(this.txtListedPrice.Text.Trim());
-            this.Product.minimum_price = ValueConvert.ToDouble(this.txtMinimumPrice.Text.Trim());
-            this.Product.base_price = ValueConvert.ToDouble(this.txtBasePrice.Text.Trim());
             this.Product.home_delivery = this.chkHomeDelivery.IsChecked == true ? true : false;
-            this.Product.user_rating = ValueConvert.ToDouble(this.txtUserRating.Text.Trim());
+            if (double.TryParse(this.txtWidth.Text.Trim(), out tmp_double))
+            {
+                this.Product.width = ValueConvert.ToDouble(this.txtWidth.Text.Trim());
+            }
+            else
+            {
+                throw new ArgumentException("width");
+            }
+            if (double.TryParse(this.txtHeight.Text.Trim(), out tmp_double))
+            {
+                this.Product.height = ValueConvert.ToDouble(this.txtHeight.Text.Trim());
+            }
+            else
+            {
+                throw new ArgumentException("height");
+            }
+            if (double.TryParse(this.txtWeight.Text.Trim(), out tmp_double))
+            {
+                this.Product.weight = ValueConvert.ToDouble(this.txtWeight.Text.Trim());
+            }
+            else
+            {
+                throw new ArgumentException("weight");
+            }
+            if (int.TryParse(this.txtWarrenty.Text.Trim(), out tmp_int))
+            {
+                this.Product.warranty = ValueConvert.ToInt(this.txtWarrenty.Text.Trim());
+            }
+            else
+            {
+                throw new ArgumentException("warranty");
+            }
+            if (int.TryParse(this.txtStock.Text.Trim(), out tmp_int))
+            {
+                this.Product.stock = ValueConvert.ToInt(this.txtStock.Text.Trim());
+            }
+            else
+            {
+                throw new ArgumentException("stock");
+            }
+            if (double.TryParse(this.txtListedPrice.Text.Trim(), out tmp_double))
+            {
+                this.Product.listed_price = ValueConvert.ToDouble(this.txtListedPrice.Text.Trim());
+            }
+            else
+            {
+                throw new ArgumentException("listed price");
+            }
+            if (double.TryParse(this.txtMinimumPrice.Text.Trim(), out tmp_double))
+            {
+                this.Product.minimum_price = ValueConvert.ToDouble(this.txtMinimumPrice.Text.Trim());
+            }
+            else
+            {
+                throw new ArgumentException("minimum price");
+            }
+            if (double.TryParse(this.txtBasePrice.Text.Trim(), out tmp_double))
+            {
+                this.Product.base_price = ValueConvert.ToDouble(this.txtBasePrice.Text.Trim());
+            }
+            else
+            {
+                throw new ArgumentException("base price");
+            }
+            if (double.TryParse(this.txtUserRating.Text.Trim(), out tmp_double))
+            {
+                this.Product.user_rating = ValueConvert.ToDouble(this.txtUserRating.Text.Trim());
+            }
+            else
+            {
+                throw new ArgumentException("user rating");
+            }
+
 
             if(this.Selected_Photo.Length > 0)
             {
@@ -436,9 +504,30 @@ namespace KIT502_Software_Solution
             this.Tv.screen_type = this.txtTvScreenType.Text.Trim();
             this.Tv.screen_definition = this.txtTvScreenDefinition.Text.Trim();
             this.Tv.screen_resolution = this.txtTvScreenResolution.Text.Trim();
-            this.Tv.screen_size = ValueConvert.ToDouble(this.txtTvScreenSize.Text.Trim());
-            this.Tv.no_hdmi_ports = ValueConvert.ToInt(this.txtTvHdmiPorts.Text.Trim());
-            this.Tv.no_usb_ports = ValueConvert.ToInt(this.txtTvUsbPorts.Text.Trim());
+            if (double.TryParse(this.txtTvScreenSize.Text.Trim(), out tmp_double))
+            {
+                this.Tv.screen_size = ValueConvert.ToDouble(this.txtTvScreenSize.Text.Trim());
+            }
+            else
+            {
+                throw new ArgumentException("screen size");
+            }
+            if (int.TryParse(this.txtTvHdmiPorts.Text.Trim(), out tmp_int))
+            {
+                this.Tv.no_hdmi_ports = ValueConvert.ToInt(this.txtTvHdmiPorts.Text.Trim());
+            }
+            else
+            {
+                throw new ArgumentException("HDMI ports");
+            }
+            if (int.TryParse(this.txtTvUsbPorts.Text.Trim(), out tmp_int))
+            {
+                this.Tv.no_usb_ports = ValueConvert.ToInt(this.txtTvUsbPorts.Text.Trim());
+            }
+            else
+            {
+                throw new ArgumentException("USB ports");
+            }
             this.Tv.connectivity = this.txtTvConnectivity.Text.Trim();
         }
 
@@ -451,9 +540,23 @@ namespace KIT502_Software_Solution
 
             this.Fridge.colour = this.txtFridgeColor.Text.Trim();
             this.Fridge.fridge_features = this.txtFridgeFridgeFeatures.Text.Trim();
-            this.Fridge.fridge_capacity = ValueConvert.ToInt(this.txtFridgeFridgeCapacity.Text.Trim());
+            if (int.TryParse(this.txtFridgeFridgeCapacity.Text.Trim(), out tmp_int))
+            {
+                this.Fridge.fridge_capacity = ValueConvert.ToInt(this.txtFridgeFridgeCapacity.Text.Trim());
+            }
+            else
+            {
+                throw new ArgumentException("fridge capacity");
+            }
             this.Fridge.freezer_features = this.txtFridgeFreezerFeatures.Text.Trim();
-            this.Fridge.freezer_capacity = ValueConvert.ToInt(this.txtFridgeFreezerCapacity.Text.Trim());
+            if (int.TryParse(this.txtFridgeFreezerCapacity.Text.Trim(), out tmp_int))
+            {
+                this.Fridge.freezer_capacity = ValueConvert.ToInt(this.txtFridgeFreezerCapacity.Text.Trim());
+            }
+            else
+            {
+                throw new ArgumentException("freezer capacity");
+            }
         }
 
         private void GetWashingMachine()
@@ -464,12 +567,40 @@ namespace KIT502_Software_Solution
             }
 
             this.Wm.colour = this.txtWmColor.Text.Trim();
-            this.Wm.power_consumption = ValueConvert.ToInt(this.txtWmPowerConsumption.Text.Trim());
-            this.Wm.wels_water_efficiency = ValueConvert.ToDouble(this.txtWmWaterEfficiency.Text.Trim());
-            this.Wm.wels_water_consumption = ValueConvert.ToInt(this.txtWmWaterConsumption.Text.Trim());
+            if (int.TryParse(this.txtWmPowerConsumption.Text.Trim(), out tmp_int))
+            {
+                this.Wm.power_consumption = ValueConvert.ToInt(this.txtWmPowerConsumption.Text.Trim());
+            }
+            else
+            {
+                throw new ArgumentException("power consumption");
+            }
+            if (double.TryParse(this.txtWmWaterEfficiency.Text.Trim(), out tmp_double))
+            {
+                this.Wm.wels_water_efficiency = ValueConvert.ToDouble(this.txtWmWaterEfficiency.Text.Trim());
+            }
+            else
+            {
+                throw new ArgumentException("water efficiency");
+            }
+            if (int.TryParse(this.txtWmWaterConsumption.Text.Trim(), out tmp_int))
+            {
+                this.Wm.wels_water_consumption = ValueConvert.ToInt(this.txtWmWaterConsumption.Text.Trim());
+            }
+            else
+            {
+                throw new ArgumentException("water consumption");
+            }
             this.Wm.wels_registration_number = this.txtWmRegistrationNumber.Text.Trim();
             this.Wm.delay_start = this.txtWmDelayStart.Text.Trim();
-            this.Wm.washing_capacity = ValueConvert.ToInt(this.txtWmWashingCapacity.Text.Trim());
+            if (int.TryParse(this.txtWmWashingCapacity.Text.Trim(), out tmp_int))
+            {
+                this.Wm.washing_capacity = ValueConvert.ToInt(this.txtWmWashingCapacity.Text.Trim());
+            }
+            else
+            {
+                throw new ArgumentException("water capacity");
+            }
             this.Wm.internal_tube_material = this.txtWmInternalTubeMaterial.Text.Trim();
         }
 
@@ -481,9 +612,23 @@ namespace KIT502_Software_Solution
             }
 
             this.Vc.colour = this.txtVcColor.Text.Trim();
-            this.Vc.max_capacity = ValueConvert.ToInt(this.txtVcMaxCapacity.Text.Trim());
+            if (int.TryParse(this.txtVcMaxCapacity.Text.Trim(), out tmp_int))
+            {
+                this.Vc.max_capacity = ValueConvert.ToInt(this.txtVcMaxCapacity.Text.Trim());
+            }
+            else
+            {
+                throw new ArgumentException("max capacity");
+            }
             this.Vc.vacuum_bag = this.txtVcVacuumBag.Text.Trim();
-            this.Vc.standard_run_time = ValueConvert.ToInt(this.txtVcStandardRuntime.Text.Trim());
+            if (int.TryParse(this.txtVcStandardRuntime.Text.Trim(), out tmp_int))
+            {
+                this.Vc.standard_run_time = ValueConvert.ToInt(this.txtVcStandardRuntime.Text.Trim());
+            }
+            else
+            {
+                throw new ArgumentException("standard runtime");
+            }
         }
 
         private void GetAirFryer()

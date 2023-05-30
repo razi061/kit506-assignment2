@@ -41,15 +41,30 @@ namespace KIT502_Software_Solution
             var quantity = ValueConvert.ToInt(this.txtReorderQuantity.Text.Trim());
             var comments = ValueConvert.ToString(this.txtComments.Text.Trim());
 
+            if (!int.TryParse(this.txtReorderQuantity.Text.Trim(), out quantity))
+            {
+                MessageBox.Show("Quantity should be numbers.",
+                    "Error",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+                return;
+            }
+
             if (quantity <= 0)
             {
-                MessageBox.Show("Please enter quantity.");
+                MessageBox.Show("Please enter a valid quantity.",
+                    "Error",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
                 return;
             }
 
             if (comments.Length <= 0)
             {
-                MessageBox.Show("Please enter comments.");
+                MessageBox.Show("Please enter some comments.",
+                    "Error",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
                 return;
             }
 
