@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using MySql.Data.MySqlClient;
+using KIT502_Software_Solution.DBUtility;
 
 namespace KIT502_Software_Solution.Model
 {
@@ -22,6 +24,38 @@ namespace KIT502_Software_Solution.Model
             this.discount = 0;
             this.expiry_date = new DateTime();
             this.buyer_id = 0;
+        }
+
+        public static Voucher GetById(int id)
+        {
+            var voucher = new Voucher();
+            MySqlDataReader? dr = null;
+
+            using (var conn = DbConnection.OpenDbConnection())
+            {
+                try
+                {
+                    using (var cmd = new MySqlCommand("SELECT * FROM " + TABLE_NAME + " WHERE id=" + id, conn))
+                    {
+                        dr = cmd.ExecuteReader();
+
+                        if (dr.HasRows)
+                        {
+                            voucher = Convert(dr)[0];
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
+                finally
+                {
+                    DbConnection.CloseDbConnection();
+                }
+            }
+
+            return voucher;
         }
 
         private static IList<Voucher> Convert(MySqlDataReader? dr)

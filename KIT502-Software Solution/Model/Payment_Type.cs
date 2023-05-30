@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using KIT502_Software_Solution.DBUtility;
 using MySql.Data.MySqlClient;
 
 namespace KIT502_Software_Solution.Model
@@ -25,6 +27,40 @@ namespace KIT502_Software_Solution.Model
         public override string ToString()
         {
             return this.name;
+        }
+
+        public static IList<Payment_Type> LoadAll(bool addAll = false)
+        {
+            IList<Payment_Type> list = new List<Payment_Type>();
+            MySqlDataReader? dr = null;
+
+            using (var conn = DbConnection.OpenDbConnection())
+            {
+                try
+                {
+                    using (var cmd = new MySqlCommand("SELECT * FROM " + TABLE_NAME, conn))
+                    {
+                        dr = cmd.ExecuteReader();
+                        list = Convert(dr);
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
+                finally
+                {
+                    DbConnection.CloseDbConnection();
+                }
+            }
+
+            if (addAll)
+            {
+                list.Add(new Payment_Type { id = 0, name = "All" });
+            }
+
+            list = list.OrderBy(c => c.id).ToList();
+            return list;
         }
 
         private static IList<Payment_Type> Convert(MySqlDataReader? dr)

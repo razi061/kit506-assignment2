@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using MySql.Data.MySqlClient;
 using KIT502_Software_Solution.DBUtility;
+using System.Windows.Interop;
 
 namespace KIT502_Software_Solution.Model
 {
@@ -84,6 +85,42 @@ namespace KIT502_Software_Solution.Model
             }
 
             return product;
+        }
+
+        public static Message DecreaseStock(int id, int quantity)
+        {
+            Message msg = new Message(Message.MessageTypes.Information, "");
+            Product product = new Product();
+            MySqlDataReader? dr = null;
+
+            using (var conn = DbConnection.OpenDbConnection())
+            {
+                try
+                {
+                    string str = "UPDATE " + TABLE_NAME + " SET stock=stock-@stock WHERE id=" + id;
+
+                    MySqlCommand comm = conn.CreateCommand();
+                    comm.CommandText = str;
+                    comm.Parameters.AddWithValue("@stock", quantity);
+
+                    int result = comm.ExecuteNonQuery();
+
+                    if (result <= 0)
+                    {
+                        msg = new Message(Message.MessageTypes.Error, "Operation unsuccessful.");
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
+                finally
+                {
+                    DbConnection.CloseDbConnection();
+                }
+            }
+
+            return msg;
         }
 
         public static IList<Product> Find(int categoryId, string query)

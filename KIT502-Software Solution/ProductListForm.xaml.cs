@@ -81,6 +81,19 @@ namespace KIT502_Software_Solution
             this.Close();
         }
 
+        private void btnBuyProduct_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.Selected_Product.id > 0)
+            {
+                var pf = new PurchaseForm(this.Selected_Product.id);
+                pf.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Please select a product and try again.");
+            }
+        }
+
         private void PopulateData()
         {
             var categoryList = Category.LoadAll(true);
