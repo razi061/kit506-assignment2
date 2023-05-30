@@ -296,15 +296,9 @@ namespace KIT502_Software_Solution
             {
                 throw new ArgumentException("base price");
             }
-            if (double.TryParse(this.txtUserRating.Text.Trim(), out tmp_double))
-            {
-                this.Product.user_rating = ValueConvert.ToDouble(this.txtUserRating.Text.Trim());
-            }
-            else
-            {
-                throw new ArgumentException("user rating");
-            }
-
+            this.Product.user_rating = isNewProduct ? 0 : ValueConvert.ToDouble(this.txtUserRating.Text.Trim());
+            this.Product.energy_rating = ValueConvert.ToDouble(this.txtEnergyEfficiency.Text.Trim());
+            this.Product.depth = ValueConvert.ToDouble(this.txtDepth.Text.Trim());
 
             if (this.Selected_Photo.Length > 0)
             {
