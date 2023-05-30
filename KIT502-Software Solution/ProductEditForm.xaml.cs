@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,10 +11,10 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-
+using System.Xaml;
 using KIT502_Software_Solution.Model;
 using KIT502_Software_Solution.Utility;
+using Microsoft.Win32;
 
 namespace KIT502_Software_Solution
 {
@@ -28,6 +29,8 @@ namespace KIT502_Software_Solution
         private Washing_Machine? Wm;
         private Vacuum_Cleaner? Vc;
         private Air_Fryer? Af;
+
+        private string Selected_Photo = "";
 
         public ProductEditForm()
         {
@@ -47,12 +50,37 @@ namespace KIT502_Software_Solution
 
         private void cmbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            this.HideAllDetailsSections();
 
+            if (this.cmbCategory.SelectedValue.ToString() == "1")
+            {
+                this.cnvTv.Visibility = Visibility.Visible;
+            }
+
+            if (this.cmbCategory.SelectedValue.ToString() == "2")
+            {
+                this.cnvFridge.Visibility = Visibility.Visible;
+            }
+
+            if (this.cmbCategory.SelectedValue.ToString() == "3")
+            {
+                this.cnvWashingMachine.Visibility = Visibility.Visible;
+            }
+
+            if (this.cmbCategory.SelectedValue.ToString() == "4")
+            {
+                this.cnvVacuumCleaner.Visibility = Visibility.Visible;
+            }
+
+            if (this.cmbCategory.SelectedValue.ToString() == "5")
+            {
+                this.cnvAirFryer.Visibility = Visibility.Visible;
+            }
         }
 
         private void btnSaveProduct_Click(object sender, RoutedEventArgs e)
         {
-
+            this.SaveProduct();
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -62,7 +90,16 @@ namespace KIT502_Software_Solution
 
         private void btnBrosePhoto_Click(object sender, RoutedEventArgs e)
         {
+            OpenFileDialog op = new OpenFileDialog();
+            op.Title = "Select a picture";
+            op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
+              "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
+              "Portable Network Graphic (*.png)|*.png";
 
+            if (op.ShowDialog() == true)
+            {
+                lblSelectedPhotoName.Content = this.Selected_Photo = op.FileName;
+            }
         }
 
         private void InitializeControls()
@@ -166,6 +203,19 @@ namespace KIT502_Software_Solution
             this.Product.home_delivery = this.chkHomeDelivery.IsChecked == true ? true : false;
             this.Product.user_rating = ValueConvert.ToDouble(this.txtUserRating.Text.Trim());
 
+            if(this.Selected_Photo.Length > 0)
+            {
+                string fileName = Guid.NewGuid().ToString() + Path.GetExtension(this.Selected_Photo);
+                string destinationFileName = Environment.CurrentDirectory + "/images/" + fileName;
+                File.Copy(this.Selected_Photo, destinationFileName);
+
+                this.Product.photo = destinationFileName;
+            }
+            else if (isNewProduct)
+            {
+                this.Product.photo = "";
+            }
+
             Message msg = Product.Save(this.Product);
 
             if(msg.Type == Message.MessageTypes.Information)
@@ -181,6 +231,11 @@ namespace KIT502_Software_Solution
                     this.Tv.product_id = this.Product.id;
 
                     msg = Tv.Save(this.Tv);
+
+                    if (isNewProduct)
+                    {
+                        this.Tv.id = ValueConvert.ToInt(msg.Msg);
+                    }
                 }
 
                 if (this.Product.category_id == 2)
@@ -206,6 +261,11 @@ namespace KIT502_Software_Solution
                     this.GetAirFryer();
                     this.Af.product_id = this.Product.id;
                 }
+            }
+
+            if(msg.Type == Message.MessageTypes.Information)
+            {
+                MessageBox.Show("Save successfull.");
             }
             else
             {

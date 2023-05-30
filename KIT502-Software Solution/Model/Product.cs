@@ -121,7 +121,7 @@ namespace KIT502_Software_Solution.Model
                         productList = Convert(dr);
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
 
                 }
@@ -147,16 +147,16 @@ namespace KIT502_Software_Solution.Model
                     if(product.id <= 0)
                     {
                         str = "INSERT INTO " + TABLE_NAME + " (name, category_id, barcode, product_type, brand, model, energy_rating, " +
-                            "width, height, depth, weight, warrenty, stock, listed_price, minimum_price, base_price, home_delivery, user_rating) " +
+                            "width, height, depth, weight, warranty, stock, listed_price, minimum_price, base_price, home_delivery, user_rating, photo) " +
                             "VALUES (@name, @category_id, @barcode, @product_type, @brand, @model, @energy_rating, @width, @height, " +
-                            "@depth, @weight, @warrenty, @stock, @listed_price, @minimum_price, @base_price, @home_delivery, @user_rating)";
+                            "@depth, @weight, @warranty, @stock, @listed_price, @minimum_price, @base_price, @home_delivery, @user_rating, @photo)";
                     }
                     else
                     {
-                        str = "UPDATE " + TABLE_NAME + " SET name=@name, barcode=@barcode, product_type=@product_type, brand=@brand, model=@model " +
-                            "energy_rating=@energy_rating, width=@width, height=@height, depth=@depth, weight=@weight, warrenty=@warrenty, " +
+                        str = "UPDATE " + TABLE_NAME + " SET name=@name, barcode=@barcode, product_type=@product_type, brand=@brand, model=@model, " +
+                            "energy_rating=@energy_rating, width=@width, height=@height, depth=@depth, weight=@weight, warranty=@warranty, " +
                             "stock=@stock, listed_price=@listed_price, minimum_price=@minimum_price, base_price=@base_price, " +
-                            "home_delivery=@home_delivery, user_rating=@user_rating WHERE id="+product.id;
+                            "home_delivery=@home_delivery, user_rating=@user_rating, photo=@photo WHERE id="+product.id;
                     }
 
 
@@ -164,6 +164,7 @@ namespace KIT502_Software_Solution.Model
                     MySqlCommand comm = conn.CreateCommand();
                     comm.CommandText = str;
                     comm.Parameters.AddWithValue("@name", product.brand + " " + product.product_type + " " + product.model);
+                    comm.Parameters.AddWithValue("@category_id", product.category_id);
                     comm.Parameters.AddWithValue("@barcode", product.barcode);
                     comm.Parameters.AddWithValue("@product_type", product.barcode);
                     comm.Parameters.AddWithValue("@brand", product.brand);
@@ -173,15 +174,25 @@ namespace KIT502_Software_Solution.Model
                     comm.Parameters.AddWithValue("@height", product.height);
                     comm.Parameters.AddWithValue("@depth", product.depth);
                     comm.Parameters.AddWithValue("@weight", product.weight);
-                    comm.Parameters.AddWithValue("@warrenty", product.warranty);
+                    comm.Parameters.AddWithValue("@warranty", product.warranty);
+                    comm.Parameters.AddWithValue("@stock", product.stock);
+                    comm.Parameters.AddWithValue("@listed_price", product.listed_price);
+                    comm.Parameters.AddWithValue("@minimum_price", product.minimum_price);
+                    comm.Parameters.AddWithValue("@base_price", product.base_price);
                     comm.Parameters.AddWithValue("@home_delivery", product.home_delivery);
                     comm.Parameters.AddWithValue("@user_rating", product.user_rating);
+                    comm.Parameters.AddWithValue("@photo", product.photo);
 
                     int result = comm.ExecuteNonQuery();
 
                     if (result <= 0)
                     {
-                        msg = new Message(Message.MessageTypes.Error, result.ToString());
+                        msg = new Message(Message.MessageTypes.Error, "Save unsuccessful.");
+                    }
+                    else
+                    {
+                        result = (int)comm.LastInsertedId;
+                        msg = new Message(Message.MessageTypes.Information, result.ToString());
                     }
                 }
                 catch (Exception ex)

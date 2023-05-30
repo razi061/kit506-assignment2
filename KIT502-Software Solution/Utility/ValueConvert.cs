@@ -12,7 +12,11 @@ namespace KIT502_Software_Solution.Utility
         {
             var result = 0;
 
-            if(value != null && value.Length > 0)
+            if(value == null || value.Length <= 0 || value.ToLower() == "null" || value == DBNull.Value.ToString())
+            {
+                
+            }
+            else
             {
                 try
                 {
@@ -28,7 +32,11 @@ namespace KIT502_Software_Solution.Utility
         {
             var result = "";
 
-            if (value != null && value.Length > 0)
+            if (value == null || value.Length <= 0 || value.ToLower() == "null" || value == DBNull.Value.ToString())
+            {
+
+            }
+            else
             {
                 try
                 {

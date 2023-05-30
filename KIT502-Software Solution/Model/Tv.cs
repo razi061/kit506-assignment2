@@ -108,7 +108,12 @@ namespace KIT502_Software_Solution.Model
 
                     if (result <= 0)
                     {
-                        msg = new Message(Message.MessageTypes.Error, result.ToString());
+                        msg = new Message(Message.MessageTypes.Error, "Save unsuccessful.");
+                    }
+                    else
+                    {
+                        result = (int)comm.LastInsertedId;
+                        msg = new Message(Message.MessageTypes.Information, result.ToString());
                     }
                 }
                 catch (Exception ex)

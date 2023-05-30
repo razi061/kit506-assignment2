@@ -104,5 +104,6 @@
             <Label Content="Color:" Canvas.Left="85" Canvas.Top="30" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.544,0.656"/>
             <TextBox x:Name="txtAfColor" TextWrapping="Wrap" Width="200" Canvas.Left="150" Canvas.Top="35" Height="22" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         </Canvas>
+        <Label x:Name="lblSelectedPhotoName" Content="" Canvas.Left="150" Canvas.Top="514" HorizontalAlignment="Center" VerticalAlignment="Top"/>
     </Canvas>
 </Window>

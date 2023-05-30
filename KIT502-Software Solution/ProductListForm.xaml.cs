@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -71,6 +72,12 @@ namespace KIT502_Software_Solution
         {
             this.Selected_Product = (Product)lbProductList.SelectedItem;
             this.ShowProductDetails(this.Selected_Product);
+        }
+
+        private void btnAddProduct_Click(object sender, RoutedEventArgs e)
+        {
+            var pof = new ProductEditForm();
+            pof.ShowDialog();
         }
 
         private void PopulateData()
