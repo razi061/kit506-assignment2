@@ -60,6 +60,63 @@ namespace KIT502_Software_Solution.Model
             return product;
         }
 
+        public static Message Save(Fridge fridge)
+        {
+            Message msg = new Message(Message.MessageTypes.Information, "Saved successfully");
+
+            using (var conn = DbConnection.OpenDbConnection())
+            {
+                try
+                {
+                    string str = "";
+
+                    if (fridge.id <= 0)
+                    {
+                        str = "INSERT INTO " + TABLE_NAME + " (product_id, colour, fridge_features, fridge_capacity, freezer_features, " +
+                            "freezer_capacity) VALUES (@product_id, @colour, @fridge_features, @fridge_capacity, @freezer_features, " +
+                            "@freezer_capacity)";
+                    }
+                    else
+                    {
+                        str = "UPDATE " + TABLE_NAME + " SET product_id=@product_id, colour=@colour, fridge_features=@fridge_features, " +
+                            "fridge_capacity=@fridge_capacity, freezer_features=@freezer_features, freezer_capacity=@freezer_capacity " +
+                            "WHERE id=" + fridge.id;
+                    }
+
+                    MySqlCommand comm = conn.CreateCommand();
+                    comm.CommandText = str;
+                    comm.Parameters.AddWithValue("@product_id", fridge.product_id);
+                    comm.Parameters.AddWithValue("@colour", fridge.colour);
+                    comm.Parameters.AddWithValue("@fridge_features", fridge.fridge_features);
+                    comm.Parameters.AddWithValue("@fridge_capacity", fridge.fridge_capacity);
+                    comm.Parameters.AddWithValue("@freezer_features", fridge.freezer_features);
+                    comm.Parameters.AddWithValue("@freezer_capacity", fridge.freezer_capacity);
+
+                    int result = comm.ExecuteNonQuery();
+
+                    if (result <= 0)
+                    {
+                        msg = new Message(Message.MessageTypes.Error, "Save unsuccessful.");
+                    }
+                    else
+                    {
+                        result = (int)comm.LastInsertedId;
+                        msg = new Message(Message.MessageTypes.Information, result.ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    msg = new Message(Message.MessageTypes.Error, "An error occurred. Details: " + ex.Message);
+                }
+                finally
+                {
+                    DbConnection.CloseDbConnection();
+                }
+            }
+
+            return msg;
+        }
+
         private static IList<Fridge> Convert(MySqlDataReader? dr)
         {
             var fridgeList = new List<Fridge>();

@@ -77,7 +77,8 @@ namespace KIT502_Software_Solution
         private void btnAddProduct_Click(object sender, RoutedEventArgs e)
         {
             var pof = new ProductEditForm();
-            pof.ShowDialog();
+            pof.Show();
+            this.Close();
         }
 
         private void PopulateData()
@@ -135,6 +136,16 @@ namespace KIT502_Software_Solution
             this.lblBasePrice.Content = ValueConvert.ToString(product.base_price.ToString());
             this.lblHomeDelivery.Content = ValueConvert.ToBoolean(product.home_delivery.ToString()) ? "Yes" : "No";
             this.lblUserRating.Content = ValueConvert.ToString(product.user_rating.ToString());
+
+            if(product.photo != null && product.photo.Length > 0)
+            {
+                string fileName = Environment.CurrentDirectory + "/images/" + product.photo;
+
+                if(File.Exists(fileName))
+                {
+                    this.imgImage.Source = new BitmapImage(new Uri(fileName));
+                }
+            }
 
             if(product.category_id == 1)
             {

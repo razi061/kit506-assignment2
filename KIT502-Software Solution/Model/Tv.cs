@@ -90,8 +90,6 @@ namespace KIT502_Software_Solution.Model
                             "no_hdmi_ports=@no_hdmi_ports, no_usb_ports=@no_usb_ports, connectivity=@connectivity WHERE id=" + tv.id;
                     }
 
-
-
                     MySqlCommand comm = conn.CreateCommand();
                     comm.CommandText = str;
                     comm.Parameters.AddWithValue("@product_id", tv.product_id);

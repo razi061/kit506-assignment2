@@ -52,6 +52,56 @@ namespace KIT502_Software_Solution.Model
             return product;
         }
 
+        public static Message Save(Air_Fryer af)
+        {
+            Message msg = new Message(Message.MessageTypes.Information, "Saved successfully");
+
+            using (var conn = DbConnection.OpenDbConnection())
+            {
+                try
+                {
+                    string str = "";
+
+                    if (af.id <= 0)
+                    {
+                        str = "INSERT INTO " + TABLE_NAME + " (product_id, colour) " +
+                            "VALUES (@product_id, @colour)";
+                    }
+                    else
+                    {
+                        str = "UPDATE " + TABLE_NAME + " SET product_id=@product_id, colour=@colour WHERE id=" + af.id;
+                    }
+
+                    MySqlCommand comm = conn.CreateCommand();
+                    comm.CommandText = str;
+                    comm.Parameters.AddWithValue("@product_id", af.product_id);
+                    comm.Parameters.AddWithValue("@colour", af.colour);
+
+                    int result = comm.ExecuteNonQuery();
+
+                    if (result <= 0)
+                    {
+                        msg = new Message(Message.MessageTypes.Error, "Save unsuccessful.");
+                    }
+                    else
+                    {
+                        result = (int)comm.LastInsertedId;
+                        msg = new Message(Message.MessageTypes.Information, result.ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    msg = new Message(Message.MessageTypes.Error, "An error occurred. Details: " + ex.Message);
+                }
+                finally
+                {
+                    DbConnection.CloseDbConnection();
+                }
+            }
+
+            return msg;
+        }
+
         private static IList<Air_Fryer> Convert(MySqlDataReader? dr)
         {
             var airFryerList = new List<Air_Fryer>();

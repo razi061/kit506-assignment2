@@ -58,6 +58,60 @@ namespace KIT502_Software_Solution.Model
             return product;
         }
 
+        public static Message Save(Vacuum_Cleaner wm)
+        {
+            Message msg = new Message(Message.MessageTypes.Information, "Saved successfully");
+
+            using (var conn = DbConnection.OpenDbConnection())
+            {
+                try
+                {
+                    string str = "";
+
+                    if (wm.id <= 0)
+                    {
+                        str = "INSERT INTO " + TABLE_NAME + " (product_id, colour, max_capacity, vacuum_bag, standard_run_time) " +
+                            "VALUES (@product_id, @colour, @max_capacity, @vacuum_bag, @standard_run_time)";
+                    }
+                    else
+                    {
+                        str = "UPDATE " + TABLE_NAME + " SET product_id=@product_id, colour=@colour, max_capacity=@max_capacity, " +
+                            "vacuum_bag=@vacuum_bag, standard_run_time=@standard_run_time WHERE id=" + wm.id;
+                    }
+
+                    MySqlCommand comm = conn.CreateCommand();
+                    comm.CommandText = str;
+                    comm.Parameters.AddWithValue("@product_id", wm.product_id);
+                    comm.Parameters.AddWithValue("@colour", wm.colour);
+                    comm.Parameters.AddWithValue("@max_capacity", wm.max_capacity);
+                    comm.Parameters.AddWithValue("@vacuum_bag", wm.vacuum_bag);
+                    comm.Parameters.AddWithValue("@standard_run_time", wm.standard_run_time);
+
+                    int result = comm.ExecuteNonQuery();
+
+                    if (result <= 0)
+                    {
+                        msg = new Message(Message.MessageTypes.Error, "Save unsuccessful.");
+                    }
+                    else
+                    {
+                        result = (int)comm.LastInsertedId;
+                        msg = new Message(Message.MessageTypes.Information, result.ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    msg = new Message(Message.MessageTypes.Error, "An error occurred. Details: " + ex.Message);
+                }
+                finally
+                {
+                    DbConnection.CloseDbConnection();
+                }
+            }
+
+            return msg;
+        }
+
         private static IList<Vacuum_Cleaner> Convert(MySqlDataReader? dr)
         {
             var vacuumCleanerList = new List<Vacuum_Cleaner>();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -209,7 +210,7 @@ namespace KIT502_Software_Solution
                 string destinationFileName = Environment.CurrentDirectory + "/images/" + fileName;
                 File.Copy(this.Selected_Photo, destinationFileName);
 
-                this.Product.photo = destinationFileName;
+                this.Product.photo = fileName;
             }
             else if (isNewProduct)
             {
@@ -242,30 +243,66 @@ namespace KIT502_Software_Solution
                 {
                     this.GetFridge();
                     this.Fridge.product_id = this.Product.id;
+
+                    msg = Fridge.Save(this.Fridge);
+
+                    if (isNewProduct)
+                    {
+                        this.Fridge.id = ValueConvert.ToInt(msg.Msg);
+                    }
                 }
 
                 if (this.Product.category_id == 3)
                 {
                     this.GetWashingMachine();
                     this.Wm.product_id = this.Product.id;
+
+                    msg = Washing_Machine.Save(this.Wm);
+
+                    if (isNewProduct)
+                    {
+                        this.Wm.id = ValueConvert.ToInt(msg.Msg);
+                    }
                 }
 
                 if (this.Product.category_id == 4)
                 {
                     this.GetVacuumCleaner();
                     this.Vc.product_id = this.Product.id;
+
+                    msg = Vacuum_Cleaner.Save(this.Vc);
+
+                    if (isNewProduct)
+                    {
+                        this.Vc.id = ValueConvert.ToInt(msg.Msg);
+                    }
                 }
 
                 if (this.Product.category_id == 5)
                 {
                     this.GetAirFryer();
                     this.Af.product_id = this.Product.id;
+
+                    msg = Air_Fryer.Save(this.Af);
+
+                    if (isNewProduct)
+                    {
+                        this.Af.id = ValueConvert.ToInt(msg.Msg);
+                    }
                 }
             }
 
             if(msg.Type == Message.MessageTypes.Information)
             {
                 MessageBox.Show("Save successfull.");
+                this.ClearAll();
+                
+                if(isNewProduct)
+                {
+                    this.Close();
+                    var plf = new ProductListForm();
+                    plf.Show();
+                }
             }
             else
             {
@@ -423,6 +460,57 @@ namespace KIT502_Software_Solution
             }
 
             this.Af.colour = this.txtAfColor.Text.Trim();
+        }
+
+        private void ClearAll()
+        {
+            this.txtProductType.Clear();
+            this.txtBarcode.Clear();
+            this.txtBrand.Clear();
+            this.txtModel.Clear();
+            this.txtWidth.Clear();
+            this.txtHeight.Clear();
+            this.txtWeight.Clear();
+            this.txtWarrenty.Clear();
+            this.txtStock.Clear();
+            this.txtListedPrice.Clear();
+            this.txtMinimumPrice.Clear();
+            this.txtBasePrice.Clear();
+            this.chkHomeDelivery.IsChecked = false;
+            this.txtUserRating.Clear();
+            this.lblSelectedPhotoName.Content = "";
+            this.Selected_Photo = "";
+
+            this.txtTvRange.Clear();
+            this.txtTvScreenType.Clear();
+            this.txtTvScreenDefinition.Clear();
+            this.txtTvScreenResolution.Clear();
+            this.txtTvScreenSize.Clear();
+            this.txtTvConnectivity.Clear();
+            this.txtTvHdmiPorts.Clear();
+            this.txtTvUsbPorts.Clear();
+
+            this.txtFridgeColor.Clear();
+            this.txtFridgeFridgeFeatures.Clear();
+            this.txtFridgeFridgeCapacity.Clear();
+            this.txtFridgeFreezerFeatures.Clear();
+            this.txtFridgeFreezerCapacity.Clear();
+
+            this.txtWmColor.Clear();
+            this.txtWmPowerConsumption.Clear();
+            this.txtWmWaterEfficiency.Clear();
+            this.txtWmWaterConsumption.Clear();
+            this.txtWmRegistrationNumber.Clear();
+            this.txtWmDelayStart.Clear();
+            this.txtWmWashingCapacity.Clear();
+            this.txtWmInternalTubeMaterial.Clear();
+
+            this.txtVcColor.Clear();
+            this.txtVcMaxCapacity.Clear();
+            this.txtVcVacuumBag.Clear();
+            this.txtVcStandardRuntime.Clear();
+
+            this.txtAfColor.Clear();
         }
     }
 }

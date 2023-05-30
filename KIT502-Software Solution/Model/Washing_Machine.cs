@@ -66,6 +66,67 @@ namespace KIT502_Software_Solution.Model
             return product;
         }
 
+        public static Message Save(Washing_Machine wm)
+        {
+            Message msg = new Message(Message.MessageTypes.Information, "Saved successfully");
+
+            using (var conn = DbConnection.OpenDbConnection())
+            {
+                try
+                {
+                    string str = "";
+
+                    if (wm.id <= 0)
+                    {
+                        str = "INSERT INTO " + TABLE_NAME + " (product_id, colour, power_consumption, wels_water_efficiency, wels_water_consumption, " +
+                            "wels_registration_number, delay_start, washing_capacity, internal_tube_material) " +
+                            "VALUES (@product_id, @colour, @power_consumption, @wels_water_efficiency, @wels_water_consumption, " +
+                            "@wels_registration_number, @delay_start, @washing_capacity, @internal_tube_material)";
+                    }
+                    else
+                    {
+                        str = "UPDATE " + TABLE_NAME + " SET product_id=@product_id, colour=@colour, power_consumption=@power_consumption, " +
+                            "wels_water_efficiency=@wels_water_efficiency, wels_water_consumption=@wels_water_consumption, wels_registration_number=@wels_registration_number, " +
+                            "delay_start=@delay_start, washing_capacity=@washing_capacity, internal_tube_material=@internal_tube_material WHERE id=" + wm.id;
+                    }
+
+                    MySqlCommand comm = conn.CreateCommand();
+                    comm.CommandText = str;
+                    comm.Parameters.AddWithValue("@product_id", wm.product_id);
+                    comm.Parameters.AddWithValue("@colour", wm.colour);
+                    comm.Parameters.AddWithValue("@power_consumption", wm.power_consumption);
+                    comm.Parameters.AddWithValue("@wels_water_efficiency", wm.wels_water_efficiency);
+                    comm.Parameters.AddWithValue("@wels_water_consumption", wm.wels_water_consumption);
+                    comm.Parameters.AddWithValue("@wels_registration_number", wm.wels_registration_number);
+                    comm.Parameters.AddWithValue("@delay_start", wm.delay_start);
+                    comm.Parameters.AddWithValue("@washing_capacity", wm.washing_capacity);
+                    comm.Parameters.AddWithValue("@internal_tube_material", wm.internal_tube_material);
+
+                    int result = comm.ExecuteNonQuery();
+
+                    if (result <= 0)
+                    {
+                        msg = new Message(Message.MessageTypes.Error, "Save unsuccessful.");
+                    }
+                    else
+                    {
+                        result = (int)comm.LastInsertedId;
+                        msg = new Message(Message.MessageTypes.Information, result.ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    msg = new Message(Message.MessageTypes.Error, "An error occurred. Details: " + ex.Message);
+                }
+                finally
+                {
+                    DbConnection.CloseDbConnection();
+                }
+            }
+
+            return msg;
+        }
+
         private static IList<Washing_Machine> Convert(MySqlDataReader? dr)
         {
             var washingMachineList = new List<Washing_Machine>();
