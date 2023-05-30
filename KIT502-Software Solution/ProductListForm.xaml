@@ -11,11 +11,9 @@
         <ListBox x:Name="lbProductList" Height="703" Width="369" Canvas.Left="38" Canvas.Top="188" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionChanged="lbProductList_SelectionChanged"/>
         <Button x:Name="btnSearch" Content="Search" Canvas.Left="340" Canvas.Top="47" HorizontalAlignment="Center" VerticalAlignment="Center" Width="67" Height="25" Click="btnSearch_Click"/>
         <Button x:Name="btnAddProduct" Content="Add Product" Canvas.Left="278" Canvas.Top="100" HorizontalAlignment="Center" VerticalAlignment="Top" Width="129" Height="30" Click="btnAddProduct_Click"/>
-        <ComboBox x:Name="cmbCategory" Width="369" Canvas.Left="38" Canvas.Top="143" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cmbCategory" Width="369" Canvas.Left="38" Canvas.Top="143" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionChanged="cmbCategory_SelectionChanged"/>
         <Label Content="Category" Canvas.Left="38" Canvas.Top="104" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button x:Name="btnBuyProduct" Content="Buy Product" Canvas.Left="1080" Canvas.Top="60" Width="125" Height="24" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.252,0.591" Click="btnBuyProduct_Click"/>
-        <Button x:Name="btnReorderProduct" Content="Reorder Product" Canvas.Left="937" Canvas.Top="60" Width="125" Height="24" RenderTransformOrigin="0.252,0.591" HorizontalAlignment="Left" VerticalAlignment="Center" Click="btnReorderProduct_Click"/>
-        <GroupBox x:Name="grpProductDetails" Height="703" Header="ProductName" Canvas.Left="467" Canvas.Top="188" Width="738" HorizontalAlignment="Center" VerticalAlignment="Top">
+        <GroupBox x:Name="grpProductDetails" Height="703" Header="ProductName" Canvas.Left="467" Canvas.Top="49" Width="738" HorizontalAlignment="Center" VerticalAlignment="Top">
             <Canvas Height="682">
                 <Label Content="Product Code: " Canvas.Left="38" Canvas.Top="30" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 <Image x:Name="imgImage" Height="178" Canvas.Left="387" Canvas.Top="31" Width="293" HorizontalAlignment="Left" VerticalAlignment="Top" OpacityMask="#FF1F1C1C"/>
@@ -23,7 +21,7 @@
                 <Label Content="Brand: " Canvas.Left="81" Canvas.Top="90" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.635,0.391"/>
                 <Label Content="Model:" Canvas.Left="82" Canvas.Top="120" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 <Label Canvas.Left="63" Canvas.Top="361" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.528,1.989"/>
-                <Label Content="User Rating:" Canvas.Left="52" Canvas.Top="420" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="2.413,0.98"/>
+                <Label Content="3-year Reviewer &#xD;&#xA;Rating:" Canvas.Left="28" Canvas.Top="450" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="2.413,0.98"/>
                 <Label Content="Home Delivery:" Canvas.Left="34" Canvas.Top="390" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 <Label Content="Width (cm):" Canvas.Left="54" Canvas.Top="150" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.903,-0.459"/>
                 <Label Content="Height (cm):" Canvas.Left="51" Canvas.Top="180" FontWeight="Bold" RenderTransformOrigin="0.903,-0.459" HorizontalAlignment="Left" VerticalAlignment="Center"/>
@@ -33,10 +31,8 @@
                 <Label Content="Listed Price:" Canvas.Left="53" Canvas.Top="300" FontWeight="Bold" RenderTransformOrigin="0.903,-0.459" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 <Label Content="Minimum Price:" Canvas.Left="31" Canvas.Top="330" FontWeight="Bold" RenderTransformOrigin="0.903,-0.459" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 <Label Content="Base Price:" Canvas.Left="60" Canvas.Top="360" FontWeight="Bold" RenderTransformOrigin="0.903,-0.459" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <Button x:Name="btnEditProduct" Content="Edit Product" Canvas.Left="50" Canvas.Top="536" RenderTransformOrigin="0.429,-0.196" Height="26" Width="125" HorizontalAlignment="Center" VerticalAlignment="Top" Click="btnEditProduct_Click"/>
-                <Button x:Name="btnDeleteProduct" Content="Delete Product" Canvas.Left="200" Canvas.Top="537" RenderTransformOrigin="0.429,-0.196" Height="25" Width="125" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <Button x:Name="btnAddToCart" Content="Add to Cart" Canvas.Left="50" Canvas.Top="494" RenderTransformOrigin="0.429,-0.196" Height="25" Width="125" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <Button x:Name="btnSalesHistory" Content="Sales History" Canvas.Left="200" Canvas.Top="494" RenderTransformOrigin="0.429,-0.196" Height="25" Width="125" HorizontalAlignment="Center" VerticalAlignment="Top" Click="btnSalesHistory_Click"/>
+                <Button x:Name="btnEditProduct" Content="Edit Product" Canvas.Left="43" Canvas.Top="546" RenderTransformOrigin="0.429,-0.196" Height="26" Width="125" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnEditProduct_Click"/>
+                <Button x:Name="btnSalesHistory" Content="Sales History" Canvas.Left="190" Canvas.Top="546" RenderTransformOrigin="0.429,-0.196" Height="25" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" Click="btnSalesHistory_Click"/>
                 <Label x:Name="lblProductCode" Content="" Canvas.Left="150" Canvas.Top="30" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 <Label x:Name="lblProductType" Content="" Canvas.Left="150" Canvas.Top="60" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 <Label x:Name="lblBrand" Content="" Canvas.Left="150" Canvas.Top="90" HorizontalAlignment="Left" VerticalAlignment="Center"/>
@@ -50,7 +46,9 @@
                 <Label x:Name="lblListedPrice" Content="" Canvas.Left="150" Canvas.Top="300" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 <Label x:Name="lblMinimumPrice" Content="" Canvas.Left="150" Canvas.Top="330" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 <Label x:Name="lblBasePrice" Content="" Canvas.Left="150" Canvas.Top="360" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <Label x:Name="lblUserRating" Content="" Canvas.Left="150" Canvas.Top="420" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="lblUserRating" Content="" Canvas.Left="150" Canvas.Top="460" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Button x:Name="btnBuyProduct" Content="Buy Product" Canvas.Left="190" Canvas.Top="595" Width="125" Height="24" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.252,0.591" Click="btnBuyProduct_Click"/>
+                <Button x:Name="btnReorderProduct" Content="Reorder Product" Canvas.Left="43" Canvas.Top="594" Width="125" Height="24" RenderTransformOrigin="0.252,0.591" HorizontalAlignment="Center" VerticalAlignment="Top" Click="btnReorderProduct_Click"/>
                 <Canvas x:Name="cnvTV" Height="369" Width="332" Canvas.Left="368" Canvas.Top="250" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Visible">
                     <Canvas.Background>
                         <SolidColorBrush Color="#FFE3E3E3"/>
@@ -119,6 +117,10 @@
                     <Label x:Name="lblVcVacuumBag1" Content="" Canvas.Left="140" Canvas.Top="80" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     <Label x:Name="lblVcStandardRuntime1" Content="" Canvas.Left="140" Canvas.Top="110" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="1.5,4.24"/>
                 </Canvas>
+                <Label Content="Energy Efficiency:" Canvas.Left="21" Canvas.Top="420" FontWeight="Bold" RenderTransformOrigin="2.413,0.98" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Label x:Name="lblEnergyEffieiency" Content="" Canvas.Left="150" Canvas.Top="420" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Content="Depth (cm):" Canvas.Left="56" Canvas.Top="490" FontWeight="Bold" RenderTransformOrigin="0.903,-0.459" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label x:Name="lblDepth" Content="" Canvas.Left="150" Canvas.Top="490" HorizontalAlignment="Center" VerticalAlignment="Top"/>
             </Canvas>
         </GroupBox>
     </Canvas>

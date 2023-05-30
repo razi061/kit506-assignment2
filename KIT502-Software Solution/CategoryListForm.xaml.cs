@@ -37,7 +37,6 @@ namespace KIT502_Software_Solution
             dt.Columns.Add("Name");
             dt.Columns.Add("Low Discount Level");
             dt.Columns.Add("High Discount Level");
-            dt.Columns.Add("Table Name");
 
             foreach(var cat in categoryList)
             {
@@ -46,7 +45,6 @@ namespace KIT502_Software_Solution
                 dr[1] = cat.name;
                 dr[2] = cat.low_discount_level;
                 dr[3] = cat.high_discount_level;
-                dr[4] = cat.table_name;
 
                 dt.Rows.Add(dr);
             }

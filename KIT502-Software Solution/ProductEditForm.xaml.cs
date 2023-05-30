@@ -146,6 +146,8 @@ namespace KIT502_Software_Solution
             this.txtBasePrice.Text = ValueConvert.ToString(this.Product.base_price.ToString());
             this.chkHomeDelivery.IsChecked = ValueConvert.ToBoolean(this.Product.home_delivery.ToString()) ? true : false;
             this.txtUserRating.Text = ValueConvert.ToString(this.Product.user_rating.ToString());
+            this.txtEnergyEfficiency.Text = ValueConvert.ToString(this.Product.energy_rating.ToString());
+            this.txtDepth.Text = ValueConvert.ToString(this.Product.depth.ToString());
 
             if (this.Product.category_id == 1)
             {
@@ -203,6 +205,8 @@ namespace KIT502_Software_Solution
             this.Product.base_price = ValueConvert.ToDouble(this.txtBasePrice.Text.Trim());
             this.Product.home_delivery = this.chkHomeDelivery.IsChecked == true ? true : false;
             this.Product.user_rating = ValueConvert.ToDouble(this.txtUserRating.Text.Trim());
+            this.Product.energy_rating = ValueConvert.ToDouble(this.txtEnergyEfficiency.Text.Trim());
+            this.Product.depth = ValueConvert.ToDouble(this.txtDepth.Text.Trim());
 
             if(this.Selected_Photo.Length > 0)
             {
