@@ -53,22 +53,24 @@ namespace KIT502_Software_Solution
         private void ShowReport(IList<Product_Performance> ppList)
         {
             DataTable dt = new DataTable();
+            dt.Columns.Add("Id");
+            dt.Columns.Add("Performance");
             dt.Columns.Add("Product");
             dt.Columns.Add("Category");
             dt.Columns.Add("Total  Sales");
             dt.Columns.Add("Current Stock");
             dt.Columns.Add("Price");
-            dt.Columns.Add("Performance");
 
             foreach (var cat in ppList)
             {
                 DataRow dr = dt.NewRow();
-                dr[0] = cat.product_name;
-                dr[1] = cat.category_name;
-                dr[2] = cat.total_sales;
-                dr[3] = cat.current_stock;
-                dr[4] = cat.price;
-                dr[5] = cat.performance;
+                dr[0] = cat.product_id;
+                dr[1] = cat.performance;
+                dr[2] = cat.product_name;
+                dr[3] = cat.category_name;
+                dr[4] = cat.total_sales;
+                dr[5] = cat.current_stock;
+                dr[6] = cat.price;
 
                 dt.Rows.Add(dr);
             }
