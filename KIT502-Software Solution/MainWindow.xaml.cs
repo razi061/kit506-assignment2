@@ -27,7 +27,8 @@ namespace KIT502_Software_Solution
 
         private void btnCategoryList_Click_1(object sender, RoutedEventArgs e)
         {
-
+            CategoryListForm ctf = new CategoryListForm();
+            ctf.ShowDialog();
         }
 
         private void btnProductSearch_Click_1(object sender, RoutedEventArgs e)
