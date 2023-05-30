@@ -32,14 +32,36 @@ namespace KIT502_Software_Solution
             this.Product = Product.GetById(productId);
             this.lblProductName.Content = this.Product.name.ToString();
 
-            this.dpFromDate.SelectedDate = DateTime.Now.Date.AddDays(-30);
+            int currentYear = DateTime.Now.Year;
+            this.dpFromDate.SelectedDate = new DateTime(currentYear, 1, 1);
             this.dpToDate.SelectedDate = DateTime.Now.Date;
+
+            for (int i = 0; i <= 5; i++)
+            {
+                this.cmbYear.Items.Add(currentYear.ToString());
+                currentYear--;
+            }
+
+            this.ShowReport(this.dpFromDate.SelectedDate.Value.Date, this.dpToDate.SelectedDate.Value.Date);
         }
 
         private void btnShowReport_Click(object sender, RoutedEventArgs e)
         {
-            var purchaseList = Purchase.GetPurchaseHistory(this.Product.id, this.dpFromDate.SelectedDate.Value.Date, 
-                this.dpToDate.SelectedDate.Value.Date);
+            this.ShowReport(this.dpFromDate.SelectedDate.Value.Date, this.dpToDate.SelectedDate.Value.Date);
+        }
+
+        private void cmbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int year = ValueConvert.ToInt(this.cmbYear.SelectedItem.ToString());
+            DateTime startDate = new DateTime(year, 1, 1);
+            DateTime toDate = new DateTime(year, 12, 31);
+
+            this.ShowReport(startDate, toDate);
+        }
+
+        private void ShowReport(DateTime startDate, DateTime enddate)
+        {
+            var purchaseList = Purchase.GetPurchaseHistory(this.Product.id, startDate, enddate);
 
             DataTable dt = new DataTable();
             dt.Columns.Add("Id");

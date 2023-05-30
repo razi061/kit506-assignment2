@@ -100,7 +100,7 @@ namespace KIT502_Software_Solution.Model
 
             string query = "SELECT * FROM " + TABLE_NAME + " WHERE product_id=" + productId + " AND " +
                 "DATE(purchase_datetime) >= '" + fromDate.ToString("yyyy-MM-dd") + "' AND " +
-                "DATE(purchase_datetime) <= '" + toDate.ToString("yyyy-MM-dd") + "'";
+                "DATE(purchase_datetime) <= '" + toDate.ToString("yyyy-MM-dd") + "' ORDER BY purchase_datetime DESC";
 
             using (var conn = DbConnection.OpenDbConnection())
             {

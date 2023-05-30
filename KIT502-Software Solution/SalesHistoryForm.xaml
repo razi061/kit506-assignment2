@@ -8,12 +8,14 @@
         Title="SalesHistoryForm" Height="613" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Canvas>
         <Label x:Name="lblProductName" Content="" Canvas.Left="50" Canvas.Top="30" FontWeight="Bold"/>
-        <Label Content="From Date: " Canvas.Left="43" Canvas.Top="70"/>
-        <DatePicker x:Name="dpFromDate" Canvas.Left="119" Canvas.Top="70" HorizontalAlignment="Left" VerticalAlignment="Center" Width="103"/>
-        <Label Content="To Date: " Canvas.Left="251" Canvas.Top="70" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <DatePicker x:Name="dpToDate" Canvas.Left="312" Canvas.Top="70" Width="103" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Button x:Name="btnShowReport" Content="Show Report" Canvas.Left="451" Canvas.Top="72" HorizontalAlignment="Left" VerticalAlignment="Center" Height="22" Width="125" Click="btnShowReport_Click"/>
+        <Label Content="From Date: " Canvas.Left="175" Canvas.Top="70"/>
+        <DatePicker x:Name="dpFromDate" Canvas.Left="250" Canvas.Top="70" HorizontalAlignment="Left" VerticalAlignment="Center" Width="103"/>
+        <Label Content="To Date: " Canvas.Left="360" Canvas.Top="70" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <DatePicker x:Name="dpToDate" Canvas.Left="425" Canvas.Top="70" Width="103" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button x:Name="btnShowReport" Content="Show Report" Canvas.Left="550" Canvas.Top="72" HorizontalAlignment="Left" VerticalAlignment="Center" Height="22" Width="125" Click="btnShowReport_Click"/>
         <DataGrid x:Name="dgvReport" Height="597" Width="800" d:ItemsSource="{d:SampleData ItemCount=5}" HorizontalAlignment="Center" Canvas.Top="132" VerticalAlignment="Top"/>
+        <Label Content="Year: " Canvas.Left="19" Canvas.Top="70" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <ComboBox x:Name="cmbYear" Width="71" Canvas.Left="55" Canvas.Top="70" RenderTransformOrigin="0.553,0.488" HorizontalAlignment="Left" VerticalAlignment="Center" SelectionChanged="cmbYear_SelectionChanged"/>
     </Canvas>
 
 </Window>
