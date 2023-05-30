@@ -120,7 +120,7 @@ namespace KIT502_Software_Solution
         {
             int quantity = 1;
 
-            if(!int.TryParse(this.txtProductQuantity.Text.Trim(), out quantity))
+            if(!int.TryParse(this.txtProductQuantity.Text.Trim(), out quantity) && this.txtProductQuantity.Text.Trim() != "")
             {
                 MessageBox.Show("Only numbers are allowed in quantity.");
                 this.txtProductQuantity.Text = "1";

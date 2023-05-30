@@ -81,7 +81,40 @@ namespace KIT502_Software_Solution
 
         private void btnSaveProduct_Click(object sender, RoutedEventArgs e)
         {
-            this.SaveProduct();
+            try
+            {
+                if (this.cmbCategory.SelectedValue == null || (int)this.cmbCategory.SelectedValue <= 0)
+                {
+                    MessageBox.Show("Please select a category first.", "No category", MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                }
+                else
+                {
+                    try
+                    {
+                        this.SaveProduct();
+                        this.Close();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Please fill up all the required fields.", "Not Completed Details",
+                            MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
+            catch
+            {
+                try
+                {
+                    this.SaveProduct();
+                    this.Close();
+                }
+                catch
+                {
+                    MessageBox.Show("Please fill up all the required fields.", "Not Completed Details",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -187,6 +220,7 @@ namespace KIT502_Software_Solution
                 this.Product = new Product();
                 isNewProduct = true;
             }
+            
 
             this.Product.category_id = ValueConvert.ToInt(this.cmbCategory.SelectedValue.ToString());
             this.Product.product_type = this.txtProductType.Text.Trim();
@@ -294,7 +328,7 @@ namespace KIT502_Software_Solution
 
             if(msg.Type == Message.MessageTypes.Information)
             {
-                MessageBox.Show("Save successfull.");
+                MessageBox.Show("Save successful.");
                 this.ClearAll();
                 
                 if(isNewProduct)
