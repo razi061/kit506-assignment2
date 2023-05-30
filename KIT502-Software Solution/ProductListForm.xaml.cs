@@ -107,6 +107,11 @@ namespace KIT502_Software_Solution
             }
         }
 
+        private void cmbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.SearchProducts();
+        }
+
         private void PopulateData()
         {
             var categoryList = Category.LoadAll(true);
@@ -161,7 +166,9 @@ namespace KIT502_Software_Solution
             this.lblMinimumPrice.Content = ValueConvert.ToString(product.minimum_price.ToString());
             this.lblBasePrice.Content = ValueConvert.ToString(product.base_price.ToString());
             this.lblHomeDelivery.Content = ValueConvert.ToBoolean(product.home_delivery.ToString()) ? "Yes" : "No";
+            this.lblEnergyEffieiency.Content = ValueConvert.ToString(product.energy_rating.ToString());
             this.lblUserRating.Content = ValueConvert.ToString(product.user_rating.ToString());
+            this.lblDepth.Content = ValueConvert.ToString(product.depth.ToString());
 
             if(product.photo != null && product.photo.Length > 0)
             {
@@ -171,6 +178,13 @@ namespace KIT502_Software_Solution
                 {
                     this.imgImage.Source = new BitmapImage(new Uri(fileName));
                 }
+            }
+
+            var pp = Product_Performance.GetByProductId(product.id);
+            
+            if(pp != null && pp.product_id > 0) 
+            {
+                this.lblProductPerformance.Content = "Product Performance: " + pp.performance.ToString();
             }
 
             if(product.category_id == 1)

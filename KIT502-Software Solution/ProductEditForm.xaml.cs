@@ -145,6 +145,7 @@ namespace KIT502_Software_Solution
         private void InitializeControls()
         {
             this.HideAllDetailsSections();
+            this.txtUserRating.IsEnabled = false;
 
             var categoryList = Category.LoadAll(true);
             this.cmbCategory.ItemsSource = categoryList;
@@ -185,6 +186,8 @@ namespace KIT502_Software_Solution
             this.txtBasePrice.Text = ValueConvert.ToString(this.Product.base_price.ToString());
             this.chkHomeDelivery.IsChecked = ValueConvert.ToBoolean(this.Product.home_delivery.ToString()) ? true : false;
             this.txtUserRating.Text = ValueConvert.ToString(this.Product.user_rating.ToString());
+            this.txtEnergyEfficiency.Text = ValueConvert.ToString(this.Product.energy_rating.ToString());
+            this.txtDepth.Text = ValueConvert.ToString(this.Product.depth.ToString());
 
             if (this.Product.category_id == 1)
             {
@@ -651,8 +654,11 @@ namespace KIT502_Software_Solution
             this.txtBasePrice.Clear();
             this.chkHomeDelivery.IsChecked = false;
             this.txtUserRating.Clear();
+            this.txtUserRating.IsEnabled = true;
             this.lblSelectedPhotoName.Content = "";
             this.Selected_Photo = "";
+            this.txtEnergyEfficiency.Clear();
+            this.txtDepth.Clear();
 
             this.txtTvRange.Clear();
             this.txtTvScreenType.Clear();

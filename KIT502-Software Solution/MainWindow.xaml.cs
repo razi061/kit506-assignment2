@@ -45,7 +45,7 @@ namespace KIT502_Software_Solution
 
         private void btnLogout_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
     }
 }
