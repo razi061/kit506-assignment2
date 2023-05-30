@@ -180,6 +180,13 @@ namespace KIT502_Software_Solution
                 }
             }
 
+            var pp = Product_Performance.GetByProductId(product.id);
+            
+            if(pp != null && pp.product_id > 0) 
+            {
+                this.lblProductPerformance.Content = "Product Performance: " + pp.performance.ToString();
+            }
+
             if(product.category_id == 1)
             {
                 var tv = Tv.GetByProductId(product.id);

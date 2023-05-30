@@ -32,6 +32,38 @@ namespace KIT502_Software_Solution.Model
             this.price = 0.0;
         }
 
+        public static Product_Performance GetByProductId(int productId)
+        {
+            var pp = new Product_Performance();
+            MySqlDataReader? dr = null;
+
+            using (var conn = DbConnection.OpenDbConnection())
+            {
+                try
+                {
+                    using (var cmd = new MySqlCommand("SELECT * FROM " + TABLE_NAME + " WHERE product_id=" + productId, conn))
+                    {
+                        dr = cmd.ExecuteReader();
+
+                        if(dr.HasRows)
+                        {
+                            pp = Convert(dr)[0];
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
+                finally
+                {
+                    DbConnection.CloseDbConnection();
+                }
+            }
+
+            return pp;
+        }
+
         public static IList<Product_Performance> GetReport(double min, double max)
         {
             IList<Product_Performance> ppList = new List<Product_Performance>();
