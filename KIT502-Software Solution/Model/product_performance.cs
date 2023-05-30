@@ -64,12 +64,13 @@ namespace KIT502_Software_Solution.Model
             return pp;
         }
 
-        public static IList<Product_Performance> GetReport(double min, double max)
+        public static IList<Product_Performance> GetReport(double min, double max, bool isDesc = false)
         {
             IList<Product_Performance> ppList = new List<Product_Performance>();
             MySqlDataReader? dr = null;
 
-            string query = "SELECT * FROM " + TABLE_NAME + " WHERE performance >= " + min + " AND performance <= " + max;
+            string query = "SELECT * FROM " + TABLE_NAME + " WHERE performance >= " + min + " AND performance <= " + max +
+                " ORDER BY performance " + (isDesc ? "DESC" : "");
 
             using (var conn = DbConnection.OpenDbConnection())
             {

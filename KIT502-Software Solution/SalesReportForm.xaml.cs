@@ -40,13 +40,13 @@ namespace KIT502_Software_Solution
 
         private void btnMeetingMinimum_Click(object sender, RoutedEventArgs e)
         {
-            var ppList = Product_Performance.GetReport(30, 100);
+            var ppList = Product_Performance.GetReport(30, 100, true);
             this.ShowReport(ppList);
         }
 
         private void btnStarPerformer_Click(object sender, RoutedEventArgs e)
         {
-            var ppList = Product_Performance.GetReport(50, 100);
+            var ppList = Product_Performance.GetReport(50, 100, true);
             this.ShowReport(ppList);
         }
 
