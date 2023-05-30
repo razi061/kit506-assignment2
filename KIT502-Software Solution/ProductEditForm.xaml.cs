@@ -299,9 +299,37 @@ namespace KIT502_Software_Solution
             {
                 throw new ArgumentException("base price");
             }
-            this.Product.user_rating = isNewProduct ? 0 : ValueConvert.ToDouble(this.txtUserRating.Text.Trim());
-            this.Product.energy_rating = ValueConvert.ToDouble(this.txtEnergyEfficiency.Text.Trim());
-            this.Product.depth = ValueConvert.ToDouble(this.txtDepth.Text.Trim());
+            if (isNewProduct)
+            {
+                this.Product.user_rating = 0;
+            }
+            else
+            {
+                if (double.TryParse(this.txtUserRating.Text.Trim(), out tmp_double))
+                {
+                    this.Product.user_rating = ValueConvert.ToDouble(this.txtUserRating.Text.Trim());
+                }
+                else
+                {
+                    throw new ArgumentException("user rating");
+                }
+            }
+            if (double.TryParse(this.txtEnergyEfficiency.Text.Trim(), out tmp_double))
+            {
+                this.Product.energy_rating = ValueConvert.ToDouble(this.txtEnergyEfficiency.Text.Trim());
+            }
+            else
+            {
+                throw new ArgumentException("energy efficiency");
+            }
+            if (double.TryParse(this.txtDepth.Text.Trim(), out tmp_double))
+            {
+                this.Product.depth = ValueConvert.ToDouble(this.txtDepth.Text.Trim());
+            }
+            else
+            {
+                throw new ArgumentException("depth");
+            }
 
             if (this.Selected_Photo.Length > 0)
             {
